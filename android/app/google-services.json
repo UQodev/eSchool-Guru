@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "672636215232",
+    "project_id": "eschoolmobile-9785a",
+    "storage_bucket": "eschoolmobile-9785a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:672636215232:android:889efa8fbc929a28e6f225",
+        "android_client_info": {
+          "package_name": "id.ac.upskilling.android"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuAD8Mrq_Qkgaj_s-odgeGcXpEseU5GXQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
