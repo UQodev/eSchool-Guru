@@ -52,7 +52,7 @@ class Utils {
       'Mei',
       'Jun',
       'Jul',
-      'Agus',
+      'Agu',
       'Sep',
       'Okt',
       'Nov',
