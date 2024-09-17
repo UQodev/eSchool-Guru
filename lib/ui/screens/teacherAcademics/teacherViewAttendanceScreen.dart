@@ -75,7 +75,7 @@ class _TeacherViewAttendanceScreenState
       required String title,
       required Color backgroundColor}) {
     return Container(
-      height: 70,
+      height: 75,
       padding: EdgeInsets.symmetric(
           horizontal: appContentHorizontalPadding, vertical: 12.5),
       decoration: BoxDecoration(

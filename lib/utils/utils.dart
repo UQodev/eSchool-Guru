@@ -70,7 +70,21 @@ class Utils {
   }
 
   static String formatDateAndTime(DateTime dateTime) {
-    return DateFormat("dd-MM-yyyy, kk:mm").format(dateTime);
+    // Asumsi fungsi formatDateAndTime defaultntya adalah WIB
+    final localOffset = DateTime.now().timeZoneOffset.inHours;
+    final diffFromWIB = localOffset - 7;
+
+    // Sesuaikan waktu
+    final adjustedDateTime = dateTime.add(Duration(hours: diffFromWIB));
+
+    // Format tanggal dan waktu
+    final formattedDateTime =
+        DateFormat("dd-MM-yy, HH.mm").format(adjustedDateTime);
+
+    // Tambahkan label zona waktu
+    final timezoneLabel = getTimezoneLabel();
+
+    return '$formattedDateTime $timezoneLabel';
   }
 
   static Future<dynamic> showBottomSheet(

@@ -384,7 +384,7 @@ class OfflineExamTimetableBottomsheet extends StatelessWidget {
                                 "-"),
                         subtitle: CustomTextContainer(
                             textKey:
-                                "${Utils.formatDate(DateTime.parse(timetableSlot.date!))} (${Utils.formatTime(timeOfDay: TimeOfDay(hour: Utils.getHourFromTimeDetails(time: timetableSlot.startTime!), minute: Utils.getMinuteFromTimeDetails(time: timetableSlot.startTime!)), context: context)} - ${Utils.formatTime(timeOfDay: TimeOfDay(hour: Utils.getHourFromTimeDetails(time: timetableSlot.endTime!), minute: Utils.getMinuteFromTimeDetails(time: timetableSlot.endTime!)), context: context)})"),
+                                "${Utils.formatDate(DateTime.parse(timetableSlot.date!))} (${Utils.formatTime(timeOfDay: TimeOfDay(hour: Utils.getHourFromTimeDetails(time: timetableSlot.startTime!), minute: Utils.getMinuteFromTimeDetails(time: timetableSlot.startTime!)), context: context)} ${Utils.getTimezoneLabel()} - ${Utils.formatTime(timeOfDay: TimeOfDay(hour: Utils.getHourFromTimeDetails(time: timetableSlot.endTime!), minute: Utils.getMinuteFromTimeDetails(time: timetableSlot.endTime!)), context: context)} ${Utils.getTimezoneLabel()})"),
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(

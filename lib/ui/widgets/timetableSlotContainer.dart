@@ -39,7 +39,7 @@ class TimetableSlotContainer extends StatelessWidget {
         return Row(
           children: [
             SizedBox(
-                width: boxConstraints.maxWidth * (0.25),
+                width: boxConstraints.maxWidth * (0.2),
                 child: Column(
                   children: [
                     CustomTextContainer(
@@ -58,7 +58,7 @@ class TimetableSlotContainer extends StatelessWidget {
                         style: TextStyle(fontSize: 12)),
                     const Spacer(),
                     Container(
-                      height: 40,
+                      height: 35,
                       width: 1.5,
                       color: Theme.of(context).colorScheme.tertiary,
                     ),
@@ -80,10 +80,10 @@ class TimetableSlotContainer extends StatelessWidget {
                   ],
                 )),
             SizedBox(
-              width: boxConstraints.maxWidth * (0.05),
+              width: boxConstraints.maxWidth * (0.025),
             ),
             SizedBox(
-                width: boxConstraints.maxWidth * (0.7),
+                width: boxConstraints.maxWidth * (0.75),
                 child: Container(
                   padding: EdgeInsets.symmetric(
                       horizontal: appContentHorizontalPadding, vertical: 10),
