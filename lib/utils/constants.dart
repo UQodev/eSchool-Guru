@@ -5,11 +5,10 @@ import 'package:flutter/material.dart';
 
 ///[Do not add / at the end of the url]
 // const String baseUrl = "https://collie-kind-hippo.ngrok-free.app"; // ngrok uqi
-const String baseUrl =
-    "https://expert-eternal-treefrog.ngrok-free.app"; // ngrok rizki
+// const String baseUrl = "https://expert-eternal-treefrog.ngrok-free.app"; // ngrok rizki
 // const String baseUrl = "https://eschool.dioo.my.id";
 // const String baseUrl = "https://eschool-saas.wrteam.me"; // url default
-// const String baseUrl = "https://eschool.ac.id";
+const String baseUrl = "https://eschool.ac.id";
 // const String baseUrl = "8.219.122.93";
 
 //https://eschool-saas.wrteam.me - Production

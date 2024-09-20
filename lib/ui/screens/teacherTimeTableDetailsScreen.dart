@@ -81,7 +81,17 @@ class _TeacherTimeTableDetailsScreenState
                   .toList();
 
               if (slots.isEmpty) {
-                return const SizedBox();
+                return Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      top: Utils.appContentTopScrollPadding(context: context) +
+                          110,
+                    ),
+                    child: CustomTextContainer(
+                      textKey: Utils.getTranslatedLabel(noTimetableKey),
+                    ),
+                  ),
+                );
               }
               return Align(
                 alignment: Alignment.topCenter,

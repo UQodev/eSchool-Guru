@@ -28,12 +28,29 @@ class FilterSelectionBottomsheet<T> extends StatelessWidget {
           const SizedBox(
             height: 25,
           ),
-          ...values.map((value) => FilterSelectionTile(
-              onTap: () {
-                onSelection.call(value);
-              },
-              isSelected: value == selectedValue,
-              title: value.toString()))
+          // Create list with Divider between each item
+          ...values.asMap().entries.map((entry) {
+            final index = entry.key;
+            final value = entry.value;
+
+            return Column(
+              children: [
+                FilterSelectionTile(
+                  onTap: () {
+                    onSelection.call(value);
+                  },
+                  isSelected: value == selectedValue,
+                  title: value.toString(),
+                ),
+                // Add Divider if not the last item
+                if (index < values.length)
+                  Divider(
+                    // color: Colors.grey, // Customize as needed
+                    thickness: 0.5, // Adjust the thickness
+                  ),
+              ],
+            );
+          }).toList(),
         ],
       ),
     );

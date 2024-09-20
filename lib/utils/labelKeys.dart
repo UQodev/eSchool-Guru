@@ -383,6 +383,7 @@ const String announcementUpdatedSuccessfullyKey =
 
 const String paidKey = "paid";
 const String unpaidKey = "unpaid";
+const String unpaidSalaryKey = "unpaidSalary";
 const String downloadingSalarySlipKey = "downloadingSalarySlip";
 
 const String downloadingFeeReceiptKey = "downloadingFeeReceipt";

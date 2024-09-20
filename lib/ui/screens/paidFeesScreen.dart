@@ -20,6 +20,7 @@ import 'package:eschool_saas_staff/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
+import 'package:intl/intl.dart';
 import 'package:open_filex/open_filex.dart';
 
 class PaidFeesScreen extends StatefulWidget {
@@ -146,7 +147,7 @@ class _PaidFeesScreenState extends State<PaidFeesScreen> {
                           children: [
                             SizedBox(
                               width: boxConstraints.maxWidth * (0.2),
-                              child: const CustomTextContainer(textKey: "#"),
+                              child: const CustomTextContainer(textKey: "No"),
                             ),
                             SizedBox(
                               width: boxConstraints.maxWidth * (0.8),
@@ -405,6 +406,12 @@ class _StudentPaidFeeDetailsContainerState
       Tween<double>(begin: 0, end: 180).animate(CurvedAnimation(
           parent: _animationController, curve: Curves.easeInOut));
 
+  String formatRupiah(double amount) {
+    final formatCurrency =
+        NumberFormat.currency(locale: 'id', symbol: 'Rp ', decimalDigits: 0);
+    return formatCurrency.format(amount);
+  }
+
   @override
   void dispose() {
     _animationController.dispose();
@@ -539,18 +546,19 @@ class _StudentPaidFeeDetailsContainerState
                                             "-"),
                                     _buildLeaveDaysAndDateContainer(
                                         title: compulsoryFeeKey,
-                                        value: widget.compolsoryFeeAmount
-                                            .toStringAsFixed(2)),
+                                        value: formatRupiah(
+                                            widget.compolsoryFeeAmount)),
                                     _buildLeaveDaysAndDateContainer(
                                         title: optionalFeeKey,
-                                        value: widget.optionalFeeAmount
-                                            .toStringAsFixed(2)),
+                                        value: formatRupiah(
+                                            widget.optionalFeeAmount)),
                                     _buildLeaveDaysAndDateContainer(
                                         title: paidAmountKey,
-                                        value: (widget.studentDetails
-                                                    .paidFeeDetails?.amount ??
-                                                0.0)
-                                            .toStringAsFixed(2)),
+                                        value: formatRupiah(widget
+                                                .studentDetails
+                                                .paidFeeDetails
+                                                ?.amount ??
+                                            0.0)),
                                     widget.studentDetails.paidFeeDetails
                                                 ?.feesId !=
                                             null

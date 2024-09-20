@@ -76,6 +76,18 @@ class _MyPayrollScreenState extends State<MyPayrollScreen> {
     return BlocBuilder<MyPayRollCubit, MyPayRollState>(
       builder: (context, state) {
         if (state is MyPayRollFetchSuccess) {
+          if (state.payrolls.isEmpty) {
+            return Center(
+              child: Padding(
+                padding: EdgeInsets.only(
+                  top: Utils.appContentTopScrollPadding(context: context) + 110,
+                ),
+                child: CustomTextContainer(
+                  textKey: Utils.getTranslatedLabel(unpaidSalaryKey),
+                ),
+              ),
+            );
+          }
           return Align(
             alignment: Alignment.topCenter,
             child: SingleChildScrollView(

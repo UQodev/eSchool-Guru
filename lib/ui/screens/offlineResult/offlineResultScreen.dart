@@ -115,7 +115,16 @@ class _OfflineResultScreenState extends State<OfflineResultScreen> {
       builder: (context, state) {
         if (state is OfflineExamStudentResultsFetchSuccess) {
           if (state.studentResults.isEmpty) {
-            return const SizedBox();
+            return Center(
+              child: Padding(
+                padding: EdgeInsets.only(
+                  top: Utils.appContentTopScrollPadding(context: context) + 110,
+                ),
+                child: CustomTextContainer(
+                  textKey: Utils.getTranslatedLabel(noExamResultKey),
+                ),
+              ),
+            );
           }
           return Align(
             alignment: Alignment.topCenter,

@@ -44,8 +44,8 @@ class CustomBottomsheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      constraints: BoxConstraints(
-          maxHeight: MediaQuery.of(context).size.height * (0.85)),
+      constraints:
+          BoxConstraints(maxHeight: MediaQuery.of(context).size.height * (0.8)),
       padding:
           EdgeInsets.symmetric(vertical: appContentHorizontalPadding * (1.25)),
       decoration: BoxDecoration(

@@ -38,7 +38,15 @@ class Utils {
   }
 
   static String getDayName(int day) {
-    const List<String> days = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
+    const List<String> days = [
+      'Senin',
+      'Selasa',
+      'Rabu',
+      'Kamis',
+      'Jum\'at',
+      'Sabtu',
+      'Minggu'
+    ];
     return days[(day - 1) %
         7]; // Menggunakan modulo untuk menghindari index out of range
   }
@@ -52,7 +60,7 @@ class Utils {
       'Mei',
       'Jun',
       'Jul',
-      'Agu',
+      'Agt',
       'Sep',
       'Okt',
       'Nov',
@@ -132,7 +140,7 @@ class Utils {
     String day = date.day.toString();
     String monthName = getMonthName(date.month);
     String year = date.year.toString();
-    return '$dayName, $day $monthName $year';
+    return '$dayName $day $monthName $year';
   }
 
   static String formatTime({
