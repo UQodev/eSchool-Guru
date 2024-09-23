@@ -79,14 +79,14 @@ class _StudentAttendanceContainerState
               return Row(
                 children: [
                   SizedBox(
-                    width: boxConstraints.maxWidth * (0.1),
+                    width: boxConstraints.maxWidth * (0.2),
                     child: const CustomTextContainer(
-                      textKey: rollNoKey2,
+                      textKey: rollNoKey,
                       style: titleStyle,
                     ),
                   ),
                   SizedBox(
-                    width: boxConstraints.maxWidth * (0.7),
+                    width: boxConstraints.maxWidth * (0.6),
                     child: const CustomTextContainer(
                       textKey: nameKey,
                       style: titleStyle,
