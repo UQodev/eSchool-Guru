@@ -18,15 +18,18 @@ class ReadMoreTextContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextStyle showMoreAndReadLessTextStyle = TextStyle(
-        color: Theme.of(context).colorScheme.secondary,
-        fontSize: 12,
-        fontWeight: FontWeight.bold);
+      color: Theme.of(context).colorScheme.secondary,
+      fontSize: 12,
+      fontWeight: FontWeight.bold,
+      decoration: TextDecoration.underline,
+      decorationThickness: 2.0,
+    );
     return ReadMoreText(
       text,
       trimLines: trimLines ?? 3,
       trimMode: TrimMode.Line,
-      trimCollapsedText: 'Show more',
-      trimExpandedText: '  Show less',
+      trimCollapsedText: 'Lebih banyak',
+      trimExpandedText: 'Lebih Sedikit',
       style: textStyle ??
           TextStyle(
               color: Theme.of(context).colorScheme.secondary.withOpacity(0.75)),
