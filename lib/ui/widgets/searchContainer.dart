@@ -56,7 +56,7 @@ class SearchContainer extends StatelessWidget {
                   additionalCallback?.call();
                 }
               },
-              icon: const Icon(Icons.close))
+              icon: const Icon(Icons.backspace_outlined))
         ],
       ),
     );
