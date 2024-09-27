@@ -122,6 +122,7 @@ class Utils {
       "",
       duration: snackBarDuration,
       titleText: const SizedBox(),
+      backgroundColor: Colors.white,
       messageText: CustomTextContainer(
         textKey: message,
         style: messageTextStyle ??
@@ -142,7 +143,7 @@ class Utils {
     String day = date.day.toString();
     String monthName = getMonthName(date.month);
     String year = date.year.toString();
-    return '$dayName $day $monthName $year';
+    return '$dayName, $day $monthName $year';
   }
 
   static String formatTime({
