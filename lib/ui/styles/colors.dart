@@ -17,4 +17,6 @@ CustomColors customColorsExtension = const CustomColors(
   totalStaffOverviewBackgroundColor: Color(0xff6dca95),
   totalStudentOverviewBackgroundColor: Color(0xffED7483),
   totalTeacherOverviewBackgroundColor: Color(0xff518EF4),
+  sickBackgroundColor: Color(0xff518EF4),
+  permissionBackgroundColor: Color(0xffff6e00),
 );
