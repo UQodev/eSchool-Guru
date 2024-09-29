@@ -86,7 +86,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   Get.toNamed(Routes.termsAndConditionScreen);
                 },
                 buttonTextKey: termsAndConditionKey,
-                textStyle: const TextStyle(fontWeight: FontWeight.w700),
+                textStyle: const TextStyle(
+                  fontWeight: FontWeight.w700,
+                  decoration: TextDecoration.underline,
+                  // decorationThickness: 1.0,
+                ),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 5.0),
@@ -101,7 +105,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   Get.toNamed(Routes.privacyPolicyScreen);
                 },
                 buttonTextKey: privacyPolicyKey,
-                textStyle: const TextStyle(fontWeight: FontWeight.w700),
+                textStyle: const TextStyle(
+                  fontWeight: FontWeight.w700,
+                  decoration: TextDecoration.underline,
+                  // decorationThickness: 1.0,
+                ),
               ),
             ],
           ),
