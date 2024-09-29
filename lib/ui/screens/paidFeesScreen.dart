@@ -395,7 +395,7 @@ class _StudentPaidFeeDetailsContainerState
       AnimationController(vsync: this, duration: tileCollapsedDuration);
 
   late final Animation<double> _heightAnimation =
-      Tween<double>(begin: 65, end: 265).animate(CurvedAnimation(
+      Tween<double>(begin: 65, end: 300).animate(CurvedAnimation(
           parent: _animationController, curve: const Interval(0.0, 0.5)));
 
   late final Animation<double> _opacityAnimation =
@@ -512,6 +512,7 @@ class _StudentPaidFeeDetailsContainerState
                     ),
                     _animationController.value > 0.5
                         ? Flexible(
+                            fit: FlexFit.loose,
                             child: Container(
                               margin: const EdgeInsets.only(top: 5.0),
                               padding: const EdgeInsets.all(15),
@@ -566,10 +567,13 @@ class _StudentPaidFeeDetailsContainerState
                                             buttonTextKey:
                                                 downloadFeeReceiptKey,
                                             textStyle: TextStyle(
-                                                fontSize: 13.0,
+                                                fontSize: 15.0,
+                                                fontWeight: FontWeight.w600,
                                                 color: Theme.of(context)
                                                     .colorScheme
-                                                    .primary),
+                                                    .primary,
+                                                decoration:
+                                                    TextDecoration.underline),
                                             onTapButton: () {
                                               Get.dialog(BlocProvider(
                                                 create: (context) =>

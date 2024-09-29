@@ -470,7 +470,7 @@ class _MyPayrollDetailsContainerState extends State<MyPayrollDetailsContainer>
                             width: boxConstraints.maxWidth * (0.48),
                             child: CustomTextFieldContainer(
                                 enabled: false,
-                                height: 40,
+                                height: 30,
                                 hintTextKey: _formatToRupiah(
                                     widget.payRoll.basicSalary))),
 
@@ -479,7 +479,7 @@ class _MyPayrollDetailsContainerState extends State<MyPayrollDetailsContainer>
                             width: boxConstraints.maxWidth * (0.48),
                             child: CustomTextFieldContainer(
                                 enabled: false,
-                                height: 40,
+                                height: 30,
                                 hintTextKey:
                                     _formatToRupiah(widget.payRoll.amount)))
                       ],
@@ -488,7 +488,7 @@ class _MyPayrollDetailsContainerState extends State<MyPayrollDetailsContainer>
                         ? Flexible(
                             child: Container(
                               margin: const EdgeInsets.only(top: 10.0),
-                              padding: const EdgeInsets.all(15),
+                              padding: const EdgeInsets.all(20),
                               width: boxConstraints.maxWidth,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8.0),
@@ -512,7 +512,8 @@ class _MyPayrollDetailsContainerState extends State<MyPayrollDetailsContainer>
                                     CustomTextButton(
                                         buttonTextKey: downloadSalarySlipKey,
                                         textStyle: TextStyle(
-                                            fontSize: 13.0,
+                                            fontSize: 16.0,
+                                            fontWeight: FontWeight.w600,
                                             color: Theme.of(context)
                                                 .colorScheme
                                                 .primary),
