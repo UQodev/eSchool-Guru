@@ -284,10 +284,24 @@ class _LeaveRequestsScreenState extends State<LeaveRequestsScreen> {
 }
 
 class LeaveRequestDetailsBottomsheet extends StatelessWidget {
+  // Tengeran
   final bool approveLeave;
   final LeaveRequest leaveRequest;
   const LeaveRequestDetailsBottomsheet(
       {super.key, required this.approveLeave, required this.leaveRequest});
+
+  String _getTranslatedLeaveType(String? type) {
+    switch (type?.toLowerCase()) {
+      case 'full':
+        return 'Sehari Penuh';
+      case 'first half':
+        return 'Setengah Pertama';
+      case 'second half':
+        return 'Setengah Kedua';
+      default:
+        return type ?? '';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -299,7 +313,8 @@ class LeaveRequestDetailsBottomsheet extends StatelessWidget {
             ...leaveRequest.leaveDetail
                     ?.map((leaveDetail) => ListTile(
                           subtitle: CustomTextContainer(
-                              textKey: leaveDetail.type ?? ""),
+                              textKey:
+                                  _getTranslatedLeaveType(leaveDetail.type)),
                           title: CustomTextContainer(
                               textKey:
                                   "${Utils.formatDate(DateTime.parse(leaveDetail.date!))}, ${Utils.weekDays[DateTime.parse(leaveDetail.date!).weekday - 1].tr}"),
