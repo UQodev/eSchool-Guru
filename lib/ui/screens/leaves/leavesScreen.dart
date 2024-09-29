@@ -123,6 +123,19 @@ class _LeavesScreenState extends State<LeavesScreen> {
     return BlocBuilder<UserLeavesCubit, UserLeavesState>(
       builder: (context, state) {
         if (state is UserLeavesFetchSuccess) {
+          // Jika tidak ada data cuti
+          if (state.leaves.isEmpty) {
+            return Center(
+              child: Padding(
+                padding: EdgeInsets.only(
+                  top: Utils.appContentTopScrollPadding(context: context) + 110,
+                ),
+                child: CustomTextContainer(
+                  textKey: Utils.getTranslatedLabel(leaveNotYetKey),
+                ),
+              ),
+            );
+          }
           return Align(
             alignment: Alignment.topCenter,
             child: SingleChildScrollView(
@@ -163,6 +176,7 @@ class _LeavesScreenState extends State<LeavesScreen> {
                     padding: EdgeInsets.all(appContentHorizontalPadding),
                     color: Theme.of(context).colorScheme.surface,
                     width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 1,
                     child: Column(
                       children: [
                         Container(
@@ -183,12 +197,12 @@ class _LeavesScreenState extends State<LeavesScreen> {
                                       const CustomTextContainer(textKey: "No"),
                                 ),
                                 SizedBox(
-                                  width: boxConstraints.maxWidth * (0.4),
+                                  width: boxConstraints.maxWidth * (0.45),
                                   child: const CustomTextContainer(
                                       textKey: leaveDateKey),
                                 ),
                                 SizedBox(
-                                  width: boxConstraints.maxWidth * (0.45),
+                                  width: boxConstraints.maxWidth * (0.4),
                                   child: const CustomTextContainer(
                                       textKey: statusKey),
                                 ),
@@ -196,28 +210,30 @@ class _LeavesScreenState extends State<LeavesScreen> {
                             );
                           }),
                         ),
-                        Container(
-                          width: double.maxFinite,
-                          decoration: BoxDecoration(
-                              border: Border(
-                                  right: BorderSide(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .tertiary),
-                                  left: BorderSide(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .tertiary)),
-                              borderRadius: const BorderRadius.only(
-                                  bottomLeft: Radius.circular(5),
-                                  bottomRight: Radius.circular(5)),
-                              color: Theme.of(context).colorScheme.surface),
-                          child: Column(
-                            children: List.generate(
-                                state.leaves.length,
-                                (index) => AppliedLeaveContainer(
-                                    leaveRequest: state.leaves[index],
-                                    index: index)).toList(),
+                        Expanded(
+                          child: Container(
+                            width: double.maxFinite,
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    right: BorderSide(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .tertiary),
+                                    left: BorderSide(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .tertiary)),
+                                borderRadius: const BorderRadius.only(
+                                    bottomLeft: Radius.circular(5),
+                                    bottomRight: Radius.circular(5)),
+                                color: Theme.of(context).colorScheme.surface),
+                            child: Column(
+                              children: List.generate(
+                                  state.leaves.length,
+                                  (index) => AppliedLeaveContainer(
+                                      leaveRequest: state.leaves[index],
+                                      index: index)).toList(),
+                            ),
                           ),
                         )
                       ],
