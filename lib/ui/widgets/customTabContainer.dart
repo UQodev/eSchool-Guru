@@ -44,7 +44,7 @@ class CustomTabContainer extends StatelessWidget {
               color: isSelected
                   ? Theme.of(context).scaffoldBackgroundColor
                   : Theme.of(context).colorScheme.secondary,
-              fontSize: 15.0,
+              fontSize: 13.0,
               fontWeight: FontWeight.w600),
         ),
       ),
