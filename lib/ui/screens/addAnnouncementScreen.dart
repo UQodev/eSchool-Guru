@@ -47,6 +47,7 @@ class AddAnnouncementScreen extends StatefulWidget {
 
 class _AddAnnouncementScreenState extends State<AddAnnouncementScreen> {
   List<ClassSection> _selectedClassSections = [];
+  bool _selectAllClasses = false;
 
   late final TextEditingController _titleTextEditingController =
       TextEditingController();
@@ -76,6 +77,17 @@ class _AddAnnouncementScreenState extends State<AddAnnouncementScreen> {
       _pickedFiles.addAll(result.files);
       setState(() {});
     }
+  }
+
+  void _toggleSelectAllClasses(bool? value) {
+    setState(() {
+      _selectAllClasses = value ?? false;
+      if (_selectAllClasses) {
+        _selectedClassSections = context.read<ClassesCubit>().getAllClasses();
+      } else {
+        _selectedClassSections.clear();
+      }
+    });
   }
 
   Widget _buildSubmitButton() {
@@ -170,158 +182,184 @@ class _AddAnnouncementScreenState extends State<AddAnnouncementScreen> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Stack(
+  Widget _buildClassSelectionSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        BlocBuilder<ClassesCubit, ClassesState>(
-          builder: (context, state) {
-            if (state is ClassesFetchSuccess) {
-              return Align(
-                alignment: Alignment.topCenter,
-                child: SingleChildScrollView(
-                  padding: EdgeInsets.only(
-                      bottom: 100,
-                      left: appContentHorizontalPadding,
-                      right: appContentHorizontalPadding,
-                      top: Utils.appContentTopScrollPadding(context: context) +
-                          20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+        Row(
+          children: [
+            Expanded(
+              child: CustomSelectionDropdownSelectionButton(
+                onTap: () {
+                  Utils.showBottomSheet(
+                    child: MultiSelectionValueBottomsheet<ClassSection>(
+                      values: context.read<ClassesCubit>().getAllClasses(),
+                      selectedValues: List.from(_selectedClassSections),
+                      titleKey: classKey,
+                    ),
+                    context: context,
+                  ).then((value) {
+                    if (value != null) {
+                      final classes = List<ClassSection>.from(value as List);
+                      setState(() {
+                        _selectedClassSections =
+                            List<ClassSection>.from(classes);
+                        _selectAllClasses = _selectedClassSections.length ==
+                            context.read<ClassesCubit>().getAllClasses().length;
+                      });
+                    }
+                  });
+                },
+                titleKey: classSectionKey,
+              ),
+            ),
+            const SizedBox(width: 5),
+            Row(
+              children: [
+                Checkbox(
+                  value: _selectAllClasses,
+                  onChanged: _toggleSelectAllClasses,
+                ),
+                Text(
+                  'Pilih Semua',
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ],
+            ),
+          ],
+        ),
+        const SizedBox(height: 15),
+        Wrap(
+          alignment: WrapAlignment.start,
+          direction: Axis.horizontal,
+          spacing: 10,
+          runSpacing: 10,
+          children: _selectedClassSections
+              .map(
+                (classSection) => Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.surface,
+                  ),
+                  padding: const EdgeInsets.all(10),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      CustomTextFieldContainer(
-                          textEditingController: _titleTextEditingController,
-                          backgroundColor:
-                              Theme.of(context).colorScheme.surface,
-                          hintTextKey: titleKey),
-                      CustomTextFieldContainer(
-                          textEditingController:
-                              _descriptionTextEditingController,
-                          maxLines: 5,
-                          backgroundColor:
-                              Theme.of(context).colorScheme.surface,
-                          hintTextKey: descriptionKey),
-                      CustomSelectionDropdownSelectionButton(
-                          onTap: () {
-                            Utils.showBottomSheet(
-                                    child: MultiSelectionValueBottomsheet<
-                                            ClassSection>(
-                                        values: context
-                                            .read<ClassesCubit>()
-                                            .getAllClasses(),
-                                        selectedValues:
-                                            List.from(_selectedClassSections),
-                                        titleKey: titleKey),
-                                    context: context)
-                                .then((value) {
-                              if (value != null) {
-                                final classes =
-                                    List<ClassSection>.from(value as List);
-
-                                _selectedClassSections =
-                                    List<ClassSection>.from(classes);
-                                setState(() {});
-                              }
-                            });
-                          },
-                          titleKey: classSectionKey),
-                      const SizedBox(
-                        height: 15,
+                      CustomTextContainer(
+                        textKey: classSection.fullName ?? "-",
                       ),
-                      Wrap(
-                        alignment: WrapAlignment.start,
-                        direction: Axis.horizontal,
-                        spacing: 10,
-                        runSpacing: 10,
-                        children: _selectedClassSections
-                            .map(
-                              (classSection) => Container(
-                                decoration: BoxDecoration(
-                                    color:
-                                        Theme.of(context).colorScheme.surface),
-                                padding: const EdgeInsets.all(10),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    CustomTextContainer(
-                                        textKey: classSection.fullName ?? "-"),
-                                    const SizedBox(
-                                      width: 7.5,
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        _selectedClassSections
-                                            .remove(classSection);
-                                        setState(() {});
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: Colors.transparent)),
-                                        child: const Icon(
-                                          Icons.close,
-                                          size: 17.50,
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            )
-                            .toList(),
-                      ),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      UploadImageOrFileButton(
-                        uploadFile: true,
-                        includeImageFileOnlyAllowedNote: true,
+                      const SizedBox(width: 7.5),
+                      InkWell(
                         onTap: () {
-                          _pickFiles();
+                          setState(() {
+                            _selectedClassSections.remove(classSection);
+                            _selectAllClasses = false;
+                          });
                         },
-                      ),
-                      ...List.generate(_pickedFiles.length, (index) => index)
-                          .map(
-                        (index) => Padding(
-                          padding: const EdgeInsets.only(top: 15),
-                          child: CustomFileContainer(
-                            backgroundColor:
-                                Theme.of(context).colorScheme.surface,
-                            onDelete: () {
-                              _pickedFiles.removeAt(index);
-                              setState(() {});
-                            },
-                            title: _pickedFiles[index].name,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.transparent),
+                          ),
+                          child: const Icon(
+                            Icons.close,
+                            size: 17.50,
                           ),
                         ),
                       )
                     ],
                   ),
                 ),
-              );
-            }
+              )
+              .toList(),
+        ),
+      ],
+    );
+  }
 
-            if (state is ClassesFetchFailure) {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          BlocBuilder<ClassesCubit, ClassesState>(
+            builder: (context, state) {
+              if (state is ClassesFetchSuccess) {
+                return Align(
+                  alignment: Alignment.topCenter,
+                  child: SingleChildScrollView(
+                    padding: EdgeInsets.only(
+                      bottom: 100,
+                      left: appContentHorizontalPadding,
+                      right: appContentHorizontalPadding,
+                      top: Utils.appContentTopScrollPadding(context: context) +
+                          20,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CustomTextFieldContainer(
+                          textEditingController: _titleTextEditingController,
+                          backgroundColor:
+                              Theme.of(context).colorScheme.surface,
+                          hintTextKey: titleKey,
+                        ),
+                        CustomTextFieldContainer(
+                          textEditingController:
+                              _descriptionTextEditingController,
+                          maxLines: 5,
+                          backgroundColor:
+                              Theme.of(context).colorScheme.surface,
+                          hintTextKey: descriptionKey,
+                        ),
+                        _buildClassSelectionSection(),
+                        const SizedBox(height: 25),
+                        UploadImageOrFileButton(
+                          uploadFile: true,
+                          includeImageFileOnlyAllowedNote: true,
+                          onTap: () {
+                            _pickFiles();
+                          },
+                        ),
+                        ...List.generate(_pickedFiles.length, (index) => index)
+                            .map(
+                          (index) => Padding(
+                            padding: const EdgeInsets.only(top: 15),
+                            child: CustomFileContainer(
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.surface,
+                              onDelete: () {
+                                _pickedFiles.removeAt(index);
+                                setState(() {});
+                              },
+                              title: _pickedFiles[index].name,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              }
+
+              if (state is ClassesFetchFailure) {
+                return Center(
+                  child: ErrorContainer(
+                    errorMessage: state.errorMessage,
+                    onTapRetry: () {
+                      context.read<ClassesCubit>().getClasses();
+                    },
+                  ),
+                );
+              }
+
               return Center(
-                child: ErrorContainer(
-                  errorMessage: state.errorMessage,
-                  onTapRetry: () {
-                    context.read<ClassesCubit>().getClasses();
-                  },
+                child: CustomCircularProgressIndicator(
+                  indicatorColor: Theme.of(context).colorScheme.primary,
                 ),
               );
-            }
-
-            return Center(
-              child: CustomCircularProgressIndicator(
-                indicatorColor: Theme.of(context).colorScheme.primary,
-              ),
-            );
-          },
-        ),
-        _buildSubmitButton(),
-        Align(
+            },
+          ),
+          _buildSubmitButton(),
+          Align(
             alignment: Alignment.topCenter,
             child: CustomAppbar(
               titleKey: addAnnouncementKey,
@@ -330,11 +368,12 @@ class _AddAnnouncementScreenState extends State<AddAnnouncementScreen> {
                     is SendGeneralAnnouncementInProgress) {
                   return;
                 }
-
                 Get.back();
               },
-            ))
-      ],
-    ));
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
