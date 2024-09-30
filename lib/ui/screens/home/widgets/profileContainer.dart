@@ -258,14 +258,15 @@ class LogoutConfirmationDialog extends StatelessWidget {
       title: const CustomTextContainer(textKey: sureToLogoutKey),
       actions: [
         CustomTextButton(
-            buttonTextKey: yesKey,
-            onTapButton: () {
-              Get.back(result: true);
-            }),
-        CustomTextButton(
             buttonTextKey: noKey,
             onTapButton: () {
               Get.back(result: false);
+            }),
+        CustomTextButton(
+            textStyle: TextStyle(color: Colors.red),
+            buttonTextKey: sureKey,
+            onTapButton: () {
+              Get.back(result: true);
             }),
       ],
     );
