@@ -239,6 +239,19 @@ class _LeaveRequestsScreenState extends State<LeaveRequestsScreen> {
           },
           builder: (context, state) {
             if (state is LeaveRequestsFetchSuccess) {
+              if (state.leaveRequests.isEmpty) {
+                return Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      top: Utils.appContentTopScrollPadding(context: context) +
+                          10,
+                    ),
+                    child: CustomTextContainer(
+                      textKey: Utils.getTranslatedLabel(noLeaveRequestKey),
+                    ),
+                  ),
+                );
+              }
               return Align(
                 alignment: Alignment.topCenter,
                 child: SingleChildScrollView(
@@ -356,7 +369,15 @@ class LeaveRequestDetailsBottomsheet extends StatelessWidget {
                         ApproveOrRejectLeaveRequestState>(
                       listener: (context, state) {
                         if (state is ApproveOrRejectLeaveRequestSuccess) {
-                          Get.back(result: true);
+                          Navigator.of(context)
+                              .pop(true); // Close the bottom sheet
+                          Future.delayed(Duration.zero, () {
+                            Utils.showSnackBar(
+                                message: approveLeave
+                                    ? 'Cuti disetujui'
+                                    : 'Cuti tidak disetujui',
+                                context: context);
+                          });
                         } else if (state
                             is ApproveOrRejectLeaveRequestFailure) {
                           Utils.showSnackBar(
