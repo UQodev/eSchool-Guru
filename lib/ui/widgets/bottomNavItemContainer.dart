@@ -35,11 +35,11 @@ class BottomNavItemContainer extends StatelessWidget {
             Container(
               padding:
                   const EdgeInsets.symmetric(horizontal: 15.0, vertical: 2.5),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  color: isSelected
-                      ? Theme.of(context).colorScheme.surface
-                      : null),
+              // decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(10.0),
+              //     color: isSelected
+              //         ? Theme.of(context).colorScheme.surface
+              //         : null),
               child: SizedBox(
                 height: 30,
                 child: SvgPicture.asset(Utils.getImagePath(isSelected
