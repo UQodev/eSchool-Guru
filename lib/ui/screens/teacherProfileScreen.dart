@@ -8,6 +8,7 @@ import 'package:eschool_saas_staff/utils/labelKeys.dart';
 import 'package:eschool_saas_staff/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:intl/intl.dart';
 
 class TeacherProfileScreen extends StatefulWidget {
   final UserDetails teacher;
@@ -206,9 +207,17 @@ class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
                         height: 30,
                       ),
                       _buildTeacherDetailsTitleAndValueContainer(
-                          titleKey: joiningDateKey,
-                          valyeKey: Utils.formatDate(
-                              DateTime.parse(widget.teacher.createdAt!))),
+                        titleKey: joiningDateKey,
+                        valyeKey: (widget.teacher.createdAt ?? "").isEmpty
+                            ? "-"
+                            : Utils.formatDate(
+                                    DateTime.parse(widget.teacher.createdAt!))
+                                .split(' ') // memisahkan berdasarkan spasi
+                                .sublist(
+                                    1) // mengambil elemen mulai dari index ke-1 (tanggal, bulan, tahun)
+                                .join(
+                                    ' '), // menggabungkan kembali menjadi string
+                      ),
                       _buildTeacherDetailsTitleAndValueContainer(
                           titleKey: emailKey,
                           valyeKey: widget.teacher.email ?? ""),
@@ -216,11 +225,17 @@ class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
                           titleKey: phoneKey,
                           valyeKey: widget.teacher.mobile ?? ""),
                       _buildTeacherDetailsTitleAndValueContainer(
-                          titleKey: dateOfBirthKey,
-                          valyeKey: (widget.teacher.dob ?? "").isEmpty
-                              ? "-"
-                              : Utils.formatDate(
-                                  DateTime.parse(widget.teacher.dob!))),
+                        titleKey: dateOfBirthKey,
+                        valyeKey: (widget.teacher.dob ?? "").isEmpty
+                            ? "-"
+                            : Utils.formatDate(
+                                    DateTime.parse(widget.teacher.dob!))
+                                .split(' ') // memisahkan berdasarkan spasi
+                                .sublist(
+                                    1) // mengambil elemen mulai dari index ke-1 (tanggal, bulan, tahun)
+                                .join(
+                                    ' '), // menggabungkan kembali menjadi string
+                      ),
                       _buildTeacherDetailsTitleAndValueContainer(
                           titleKey: genderKey,
                           valyeKey: widget.teacher.getGender()),
@@ -228,10 +243,15 @@ class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
                           titleKey: qualificationKey,
                           valyeKey: widget.teacher.staff?.qualification ?? "-"),
                       _buildTeacherDetailsTitleAndValueContainer(
-                          titleKey: salaryKey,
-                          valyeKey: widget.teacher.staff?.salary
-                                  ?.toStringAsFixed(2) ??
-                              "-"),
+                        titleKey: salaryKey,
+                        valyeKey: widget.teacher.staff?.salary != null
+                            ? NumberFormat.currency(
+                                    locale: 'id',
+                                    symbol: 'Rp ',
+                                    decimalDigits: 0)
+                                .format(widget.teacher.staff!.salary)
+                            : "-",
+                      ),
                     ],
                   ),
                 )
