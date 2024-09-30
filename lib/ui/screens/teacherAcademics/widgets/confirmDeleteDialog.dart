@@ -13,20 +13,20 @@ class ConfirmDeleteDialog extends StatelessWidget {
       actions: [
         CupertinoButton(
           child: Text(
-            Utils.getTranslatedLabel(yesKey),
-            style: TextStyle(color: Theme.of(context).colorScheme.primary),
-          ),
-          onPressed: () {
-            Get.back(result: true);
-          },
-        ),
-        CupertinoButton(
-          child: Text(
             Utils.getTranslatedLabel(noKey),
             style: TextStyle(color: Theme.of(context).colorScheme.primary),
           ),
           onPressed: () {
             Get.back();
+          },
+        ),
+        CupertinoButton(
+          child: Text(
+            Utils.getTranslatedLabel(sureKey),
+            style: TextStyle(color: Theme.of(context).colorScheme.primary),
+          ),
+          onPressed: () {
+            Get.back(result: true);
           },
         ),
       ],
