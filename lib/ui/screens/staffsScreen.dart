@@ -164,6 +164,20 @@ class _StaffsScreenState extends State<StaffsScreen> {
                 BlocBuilder<StaffsCubit, StaffsState>(
                   builder: (context, state) {
                     if (state is StaffsFetchSuccess) {
+                      if (state.saffs.isEmpty) {
+                        return Center(
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              top: Utils.appContentTopScrollPadding(
+                                      context: context) +
+                                  110,
+                            ),
+                            child: CustomTextContainer(
+                              textKey: Utils.getTranslatedLabel(noStaffsKey),
+                            ),
+                          ),
+                        );
+                      }
                       return Container(
                         width: MediaQuery.of(context).size.width,
                         padding: EdgeInsets.all(appContentHorizontalPadding),
