@@ -17,6 +17,7 @@ import 'package:eschool_saas_staff/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class StaffPayrollDetailsContainer extends StatefulWidget {
   final StaffPayRoll staffPayRoll;
@@ -46,7 +47,7 @@ class StaffPayrollDetailsContainerState
 
   //
   late final Animation<double> _heightAnimation =
-      Tween<double>(begin: 170, end: 385).animate(CurvedAnimation(
+      Tween<double>(begin: 170, end: 400).animate(CurvedAnimation(
           parent: _animationController, curve: const Interval(0.0, 0.5)));
 
   late final Animation<double> _opacityAnimation =
@@ -56,6 +57,15 @@ class StaffPayrollDetailsContainerState
   late final Animation<double> _iconAngleAnimation =
       Tween<double>(begin: 0, end: 180).animate(CurvedAnimation(
           parent: _animationController, curve: Curves.easeInOut));
+
+  String formatRupiah(double amount) {
+    final formatCurrency = NumberFormat.currency(
+      locale: 'id_ID',
+      symbol: 'Rp ',
+      decimalDigits: 0,
+    );
+    return formatCurrency.format(amount);
+  }
 
   @override
   void initState() {
@@ -199,7 +209,7 @@ class StaffPayrollDetailsContainerState
                                       "-"),
                         ),
                         SizedBox(
-                          width: boxConstraints.maxWidth * (0.375),
+                          width: boxConstraints.maxWidth * (0.4),
                           child: Row(
                             children: [
                               TextWithFadedBackgroundContainer(
@@ -276,20 +286,24 @@ class StaffPayrollDetailsContainerState
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SizedBox(
-                            width: boxConstraints.maxWidth * (0.48),
-                            child: CustomTextFieldContainer(
-                                enabled: false,
-                                height: 40,
-                                hintTextKey: widget.staffPayRoll.salary
-                                        ?.toStringAsFixed(2) ??
-                                    "-")),
+                          width: boxConstraints.maxWidth * (0.48),
+                          child: CustomTextFieldContainer(
+                            enabled: false,
+                            height: 30,
+                            hintTextKey: widget.staffPayRoll.salary != null
+                                ? formatRupiah(widget.staffPayRoll.salary!)
+                                : "-",
+                          ),
+                        ),
                         SizedBox(
-                            width: boxConstraints.maxWidth * (0.48),
-                            child: CustomTextFieldContainer(
-                                textEditingController:
-                                    _netSalaryTextEditingController,
-                                height: 40,
-                                hintTextKey: "000"))
+                          width: boxConstraints.maxWidth * (0.48),
+                          child: CustomTextFieldContainer(
+                            textEditingController:
+                                _netSalaryTextEditingController,
+                            height: 30,
+                            hintTextKey: formatRupiah(getNetSalary()),
+                          ),
+                        ),
                       ],
                     ),
                     _animationController.value > 0.5
@@ -310,19 +324,20 @@ class StaffPayrollDetailsContainerState
                                     _buildLeaveDaysAndDateContainer(
                                         title: monthlyAllowedPaidLeavesKey,
                                         value: widget.allowedMonthlyLeaves
-                                            .toStringAsFixed(2)),
+                                            .toStringAsFixed(0)),
                                     _buildLeaveDaysAndDateContainer(
                                         title: monthlyTakenLeavesKey,
                                         value: widget.staffPayRoll
                                             .totalTakenLeaves()
-                                            .toStringAsFixed(2)),
+                                            .toStringAsFixed(1)),
                                     _buildLeaveDaysAndDateContainer(
-                                        title: monthlyLeaveDeductionKey,
-                                        value: widget.staffPayRoll
-                                            .getPossibleSalaryDeductionAmount(
-                                                allowedLeaves:
-                                                    widget.allowedMonthlyLeaves)
-                                            .toStringAsFixed(2)),
+                                      title: monthlyLeaveDeductionKey,
+                                      value: formatRupiah(widget.staffPayRoll
+                                          .getPossibleSalaryDeductionAmount(
+                                        allowedLeaves:
+                                            widget.allowedMonthlyLeaves,
+                                      )),
+                                    ),
                                     CustomTextButton(
                                         buttonTextKey: widget.staffPayRoll
                                                 .receivedPayroll()
