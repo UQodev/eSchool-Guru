@@ -362,11 +362,15 @@ const String pleaseEnterExtraDaysForResubmissionKey =
 const String dueTimeKey = "dueTime";
 const String assignmentAddedSuccessfullyKey = "assignmentAddedSuccessfully";
 const String assignmentEditedSuccessfullyKey = "assignmentEditedSuccessfully";
+const String assignmentDeletedSuccessfullyKey = "assignmentDeletedSuccessfully";
 const String lessonEditedSuccessfullyKey = "lessonEditedSuccessfully";
+const String lessonDeletedSuccessfullyKey = "lessonDeletedSuccessfully";
 const String topicEditedSuccessfullyKey = "topicEditedSuccessfully";
+const String topicDeletedSuccessfullyKey = "topicDeletedSuccessfully";
 
 const String filesKey = "files";
 const String deleteAnnouncementFailedKey = "deleteAnnouncementFailed";
+const String deleteAnnouncementSuccessfullyKey = "deleteAnnouncementSuccess";
 const String announcementAddedSuccessfullyKey = "announcementAddedSuccessfully";
 
 const String notificationSentSuccessfullyKey = "notificationSentSuccessfully";

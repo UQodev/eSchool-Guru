@@ -777,8 +777,11 @@ final Map<String, String> id = {
   "dueTime": "Waktu Deadline",
   "assignmentAddedSuccessfully": "Tugas Berhasil Ditambahkan",
   "assignmentEditedSuccessfully": "Tugas Berhasil Diedit",
+  "assignmentDeletedSuccessfully": "Tugas Berhasil Dihapus",
   "lessonEditedSuccessfully": "Pelajaran Berhasil Diedit",
-  "topicEditedSuccessfully": "Topik Berhasil Diedit",
+  "lessonToDeletedSuccessfully": "Berhasil Menghapus Pelajaran",
+  "topicEditedSuccessfully": "Topik Berhasil Diedit!",
+  "topicDeletedSuccessfully": "Topik Berhasil Dihapus!",
   "files": "Berkas",
 
   ///[8]
