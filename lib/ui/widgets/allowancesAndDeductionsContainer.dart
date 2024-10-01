@@ -4,12 +4,20 @@ import 'package:eschool_saas_staff/utils/constants.dart';
 import 'package:eschool_saas_staff/utils/labelKeys.dart';
 import 'package:eschool_saas_staff/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class AllowancesAndDeductionsContainer extends StatelessWidget {
   final List<StaffSalary> allowances;
   final List<StaffSalary> deductions;
   const AllowancesAndDeductionsContainer(
       {super.key, required this.allowances, required this.deductions});
+
+  String formatRupiah(double? amount) {
+    if (amount == null) return "Rp0";
+    final formatCurrency =
+        NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ', decimalDigits: 0);
+    return formatCurrency.format(amount);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +50,7 @@ class AllowancesAndDeductionsContainer extends StatelessWidget {
                                   style: const TextStyle(fontSize: 16.0)),
                               TextSpan(
                                   text:
-                                      "(${Utils.getTranslatedLabel(currentKey)})",
+                                      " (${Utils.getTranslatedLabel(currentKey)})",
                                   style: const TextStyle(fontSize: 12.0)),
                             ])),
                           ),
@@ -62,12 +70,8 @@ class AllowancesAndDeductionsContainer extends StatelessWidget {
                                 subtitle: CustomTextContainer(
                                   textKey: staffSalary
                                           .allowanceOrDeductionInPercentage()
-                                      ? staffSalary.percentage
-                                              ?.toStringAsFixed(2) ??
-                                          "0"
-                                      : staffSalary.amount
-                                              ?.toStringAsFixed(2) ??
-                                          "0",
+                                      ? "${staffSalary.percentage?.toStringAsFixed(2) ?? "0"}%"
+                                      : formatRupiah(staffSalary.amount),
                                   style: const TextStyle(fontSize: 14),
                                 ),
                               ),
@@ -91,7 +95,7 @@ class AllowancesAndDeductionsContainer extends StatelessWidget {
                                   style: const TextStyle(fontSize: 16.0)),
                               TextSpan(
                                   text:
-                                      "(${Utils.getTranslatedLabel(currentKey)})",
+                                      " (${Utils.getTranslatedLabel(currentKey)})",
                                   style: const TextStyle(fontSize: 12.0)),
                             ])),
                           ),
@@ -112,9 +116,7 @@ class AllowancesAndDeductionsContainer extends StatelessWidget {
                                   textKey: staffSalary
                                           .allowanceOrDeductionInPercentage()
                                       ? "${staffSalary.percentage?.toStringAsFixed(2) ?? "0"}%"
-                                      : staffSalary.amount
-                                              ?.toStringAsFixed(2) ??
-                                          "0",
+                                      : formatRupiah(staffSalary.amount),
                                   style: const TextStyle(fontSize: 14),
                                 ),
                               ),
