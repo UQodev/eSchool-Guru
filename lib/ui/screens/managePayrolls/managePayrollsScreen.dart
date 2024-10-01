@@ -230,7 +230,7 @@ class _ManagePayrollsScreenState extends State<ManagePayrollsScreen> {
                           children: [
                             SizedBox(
                               width: boxConstraints.maxWidth * (0.125),
-                              child: const CustomTextContainer(textKey: "#"),
+                              child: const CustomTextContainer(textKey: "No"),
                             ),
                             SizedBox(
                               width: boxConstraints.maxWidth * (0.5),

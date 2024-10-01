@@ -344,7 +344,10 @@ class StaffPayrollDetailsContainerState
                                             ? downloadSalarySlipKey
                                             : allowancesAndDeductionsKey,
                                         textStyle: TextStyle(
-                                            fontSize: 13.0,
+                                            fontSize: 16.0,
+                                            fontWeight: FontWeight.w600,
+                                            decoration:
+                                                TextDecoration.underline,
                                             color: Theme.of(context)
                                                 .colorScheme
                                                 .primary),
