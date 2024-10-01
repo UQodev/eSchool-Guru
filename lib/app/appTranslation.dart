@@ -711,6 +711,7 @@ final Map<String, String> id = {
   "marks": "Nilai",
   "submitResult": "Kirim Hasil",
   "offlineExamResult": "Hasil Ujian Luring",
+  "noOfflineExamResult": "Tidak ada hasil ujian luring",
   "noExamResult": "Belum ada hasil ujian",
   "yourSubjects": "Subjek Anda",
   "completed": "Selesai",

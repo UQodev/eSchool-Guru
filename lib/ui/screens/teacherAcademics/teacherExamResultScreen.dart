@@ -88,6 +88,7 @@ class _TeacherExamResultScreenState extends State<TeacherExamResultScreen> {
   }
 
   void getExams() {
+    print("Fetching exams for class section: ${_selectedClassSection?.id}");
     context.read<ExamsCubit>().fetchExamsList(
           examStatus: 2, //exam should be finished
           publishStatus: 0, //exam should not be published
@@ -96,6 +97,8 @@ class _TeacherExamResultScreenState extends State<TeacherExamResultScreen> {
   }
 
   void getStudents() {
+    print(
+        "Fetching students with params: classSectionId= ${_selectedClassSection?.id}, examId= ${_selectedExam?.examID}, classSubjectId= ${_selectedExamTimetableSubject?.subjectId}");
     context.read<StudentsByClassSectionCubit>().fetchStudents(
         status: StudentListStatus.active,
         classSectionId: _selectedClassSection?.id ?? 0,
@@ -184,12 +187,12 @@ class _TeacherExamResultScreenState extends State<TeacherExamResultScreen> {
           builder: (context, state) {
             if (state is StudentsByClassSectionFetchSuccess) {
               if (state.studentDetailsList.isEmpty) {
-                // Menambahkan pesan "Belum ada hasil ujian"
                 return Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 50),
-                    child: CustomTextContainer(
-                      textKey: Utils.getTranslatedLabel(noExamResultKey),
+                  child: Text(
+                    "Tidak ada hasil ujian",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 );
@@ -384,6 +387,7 @@ class _TeacherExamResultScreenState extends State<TeacherExamResultScreen> {
         listener: (context, state) {
           if (state is ClassesFetchSuccess) {
             if (_selectedClassSection == null) {
+              print("Initializing selected class section");
               changeSelectedClassSection(
                   context.read<ClassesCubit>().getAllClasses().firstOrNull,
                   fetchNewSubjects: false);
@@ -435,9 +439,15 @@ class _TeacherExamResultScreenState extends State<TeacherExamResultScreen> {
                             BlocConsumer<ExamsCubit, ExamsState>(
                               listener: (context, state) {
                                 if (state is ExamsFetchSuccess) {
+                                  print(
+                                      "Exams fetched successfully. Total exams: ${state.examList.length}");
                                   _selectedExam = state.examList.firstOrNull;
+                                  print(
+                                      "Selected exam: ${_selectedExam?.examName}, ID: ${_selectedExam?.examID}");
                                   _selectedExamTimetableSubject =
                                       _selectedExam?.examTimetable?.firstOrNull;
+                                  print(
+                                      "Selected subject: ${_selectedExamTimetableSubject?.subjectName}, ID: ${_selectedExamTimetableSubject?.subjectId}");
                                   setState(() {});
 
                                   getStudents();
@@ -546,7 +556,19 @@ class _TeacherExamResultScreenState extends State<TeacherExamResultScreen> {
                 if (state is ClassesFetchSuccess &&
                     examState is ExamsFetchSuccess) {
                   if (examState.examList.isEmpty) {
-                    return const SizedBox();
+                    return Center(
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          top: Utils.appContentTopScrollPadding(
+                                  context: context) +
+                              10,
+                        ),
+                        child: CustomTextContainer(
+                          textKey:
+                              Utils.getTranslatedLabel(noOfflineExamResultKey),
+                        ),
+                      ),
+                    );
                   }
                   return Stack(
                     children: [

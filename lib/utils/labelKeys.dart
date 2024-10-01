@@ -277,6 +277,7 @@ const String examDateKey = "examDate";
 const String marksKey = "marks";
 const String submitResultKey = "submitResult";
 const String offlineExamResultKey = "offlineExamResult";
+const String noOfflineExamResultKey = "noOfflineExamResult";
 const String noExamResultKey = "noExamResult";
 const String attendanceNotTakenKey = "attendanceNotTaken";
 const String classTeacherKey = "classTeacher";
