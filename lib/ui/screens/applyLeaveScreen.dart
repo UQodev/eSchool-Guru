@@ -399,7 +399,12 @@ class _ApplyLeaveScreenState extends State<ApplyLeaveScreen> {
                                         ? CustomTextContainer(
                                             textKey:
                                                 "(${Utils.formatDate(_selectedFromDate!)})")
-                                        : const SizedBox()
+                                        : const SizedBox(),
+                                    Spacer(),
+                                    Icon(Icons.calendar_month,
+                                        color: Theme.of(context)
+                                            .extension<CustomColors>()!
+                                            .totalStaffOverviewBackgroundColor!),
                                   ],
                                 ),
                               ),
@@ -416,7 +421,8 @@ class _ApplyLeaveScreenState extends State<ApplyLeaveScreen> {
                                 child: Row(
                                   children: [
                                     const CustomTextContainer(
-                                        textKey: toDateKey),
+                                      textKey: toDateKey,
+                                    ),
                                     const SizedBox(
                                       width: 10,
                                     ),
@@ -424,7 +430,12 @@ class _ApplyLeaveScreenState extends State<ApplyLeaveScreen> {
                                         ? CustomTextContainer(
                                             textKey:
                                                 "(${Utils.formatDate(_selectedToDate!)})")
-                                        : const SizedBox()
+                                        : const SizedBox(),
+                                    Spacer(),
+                                    Icon(Icons.calendar_month,
+                                        color: Theme.of(context)
+                                            .extension<CustomColors>()!
+                                            .totalStudentOverviewBackgroundColor!),
                                   ],
                                 ),
                               ),
