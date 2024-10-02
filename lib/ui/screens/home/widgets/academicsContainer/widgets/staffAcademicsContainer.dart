@@ -21,82 +21,53 @@ class StaffAcademicsContainer extends StatelessWidget {
         context.read<StaffAllowedPermissionsAndModulesCubit>();
     return Column(
       children: [
-        staffAllowedPermissionsAndModulesCubit.isPermissionGiven(
-                permission: viewClassesPermissionKey)
-            ? MenusWithTitleContainer(title: classKey, menus: [
-                CustomMenuTile(
-                    iconImageName: "classes.svg",
-                    titleKey: viewClassesKey,
-                    onTap: () {
-                      Get.toNamed(Routes.classesScreen);
-                    }),
-              ])
-            : const SizedBox(),
-        staffAllowedPermissionsAndModulesCubit.isPermissionGiven(
-                permission: viewSessionYearsPermissionKey)
-            ? MenusWithTitleContainer(title: sessionYearKey, menus: [
-                CustomMenuTile(
-                    iconImageName: "session_year.svg",
-                    titleKey: viewSessionYearsKey,
-                    onTap: () {
-                      Get.toNamed(Routes.sessionYearsScreen);
-                    }),
-              ])
-            : const SizedBox(),
-        MenusWithTitleContainer(title: leaveKey, menus: [
-          CustomMenuTile(
-              iconImageName: "apply_leave.svg",
-              titleKey: applyLeaveKey,
-              onTap: () {
-                Get.toNamed(Routes.applyLeaveScreen);
-              }),
-          CustomMenuTile(
-              iconImageName: "my_leave.svg",
-              titleKey: myLeaveKey,
-              onTap: () {
-                Get.toNamed(Routes.leavesScreen,
-                    arguments: LeavesScreen.buildArguments(showMyLeaves: true));
-              }),
-          (staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
-                      moduleId: staffLeaveManagementModuleId.toString()) &&
-                  staffAllowedPermissionsAndModulesCubit.isPermissionGiven(
-                      permission: approveLeavePermissionKey))
-              ? CustomMenuTile(
-                  iconImageName: "staff_leave.svg",
-                  titleKey: staffLeaveKey,
-                  onTap: () {
-                    Get.toNamed(Routes.staffsScreen,
-                        arguments:
-                            StaffsScreen.buildArguments(forStaffLeave: true));
-                  })
-              : const SizedBox(),
-          (staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
-                      moduleId: staffLeaveManagementModuleId.toString()) &&
-                  staffAllowedPermissionsAndModulesCubit.isPermissionGiven(
-                      permission: approveLeavePermissionKey))
-              ? CustomMenuTile(
-                  iconImageName: "staff_leave.svg",
-                  titleKey: teacherLeaveKey,
-                  onTap: () {
-                    Get.toNamed(
-                      Routes.teachersScreen,
-                      arguments: TeachersScreen.buildArguments(
-                          teacherNavigationType: TeacherNavigationType.leave),
-                    );
-                  })
-              : const SizedBox(),
-        ]),
         (staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
-                    moduleId: attendanceManagementModuleId.toString()) &&
-                staffAllowedPermissionsAndModulesCubit.isPermissionGiven(
-                    permission: viewStudentAttendancePermissionKey))
-            ? MenusWithTitleContainer(title: attendanceKey, menus: [
-                CustomMenuTile(
-                    iconImageName: "student_attendance.svg",
-                    titleKey: studentAttendanceKey,
-                    onTap: () {
-                      Get.toNamed(Routes.studentsAttendanceScreen);
-                    }),
+                    moduleId: feesManagementModuleId.toString())) ||
+                (staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
+                    moduleId: expenseManagementModuleId.toString()))
+            ? MenusWithTitleContainer(title: paymentKey, menus: [
+                (staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
+                            moduleId: feesManagementModuleId.toString()) &&
+                        staffAllowedPermissionsAndModulesCubit
+                            .isPermissionGiven(
+                                permission: viewFeesPaidPermissionKey))
+                    ? CustomMenuTile(
+                        iconImageName: "paid_fees.svg",
+                        titleKey: paidFeesKey,
+                        onTap: () {
+                          Get.toNamed(Routes.paidFeesScreen);
+                        })
+                    : const SizedBox(),
+                (staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
+                            moduleId: expenseManagementModuleId.toString()) &&
+                        staffAllowedPermissionsAndModulesCubit
+                            .isPermissionGiven(
+                                permission: viewPayrollListPermissionKey))
+                    ? CustomMenuTile(
+                        iconImageName: "manage_payroll.svg",
+                        titleKey: managePayRollsKey,
+                        onTap: () {
+                          Get.toNamed(Routes.managePayrollScreen);
+                        })
+                    : const SizedBox(),
+                // staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
+                //         moduleId: expenseManagementModuleId.toString())
+                //     ? CustomMenuTile(
+                //         iconImageName: "my_payroll.svg",
+                //         titleKey: myPayRollKey,
+                //         onTap: () {
+                //           Get.toNamed(Routes.myPayrollScreen);
+                //         })
+                //     : const SizedBox(),
+                staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
+                        moduleId: expenseManagementModuleId.toString())
+                    ? CustomMenuTile(
+                        iconImageName: "allowances_and_deductions.svg",
+                        titleKey: allowancesAndDeductionsKey,
+                        onTap: () {
+                          Get.toNamed(Routes.allowancesAndDeductionsScreen);
+                        })
+                    : const SizedBox(),
               ])
             : const SizedBox(),
         (staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
@@ -120,6 +91,30 @@ class StaffAcademicsContainer extends StatelessWidget {
                             teacherNavigationType:
                                 TeacherNavigationType.timetable),
                       );
+                    }),
+              ])
+            : const SizedBox(),
+        (staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
+                    moduleId: attendanceManagementModuleId.toString()) &&
+                staffAllowedPermissionsAndModulesCubit.isPermissionGiven(
+                    permission: viewStudentAttendancePermissionKey))
+            ? MenusWithTitleContainer(title: attendanceKey, menus: [
+                CustomMenuTile(
+                    iconImageName: "student_attendance.svg",
+                    titleKey: studentAttendanceKey,
+                    onTap: () {
+                      Get.toNamed(Routes.studentsAttendanceScreen);
+                    }),
+              ])
+            : const SizedBox(),
+        staffAllowedPermissionsAndModulesCubit.isPermissionGiven(
+                permission: viewClassesPermissionKey)
+            ? MenusWithTitleContainer(title: classKey, menus: [
+                CustomMenuTile(
+                    iconImageName: "classes.svg",
+                    titleKey: viewClassesKey,
+                    onTap: () {
+                      Get.toNamed(Routes.classesScreen);
                     }),
               ])
             : const SizedBox(),
@@ -150,6 +145,60 @@ class StaffAcademicsContainer extends StatelessWidget {
                     : const SizedBox(),
               ])
             : const SizedBox(),
+        staffAllowedPermissionsAndModulesCubit.isPermissionGiven(
+                permission: viewSessionYearsPermissionKey)
+            ? MenusWithTitleContainer(title: sessionYearKey, menus: [
+                CustomMenuTile(
+                    iconImageName: "session_year.svg",
+                    titleKey: viewSessionYearsKey,
+                    onTap: () {
+                      Get.toNamed(Routes.sessionYearsScreen);
+                    }),
+              ])
+            : const SizedBox(),
+        MenusWithTitleContainer(title: leaveKey, menus: [
+          // CustomMenuTile(
+          //     iconImageName: "apply_leave.svg",
+          //     titleKey: applyLeaveKey,
+          //     onTap: () {
+          //       Get.toNamed(Routes.applyLeaveScreen);
+          //     }),
+          // CustomMenuTile(
+          //     iconImageName: "my_leave.svg",
+          //     titleKey: myLeaveKey,
+          //     onTap: () {
+          //       Get.toNamed(Routes.leavesScreen,
+          //           arguments: LeavesScreen.buildArguments(showMyLeaves: true));
+          //     }),
+          (staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
+                      moduleId: staffLeaveManagementModuleId.toString()) &&
+                  staffAllowedPermissionsAndModulesCubit.isPermissionGiven(
+                      permission: approveLeavePermissionKey))
+              ? CustomMenuTile(
+                  iconImageName: "staff_leave.svg",
+                  titleKey: staffLeaveKey,
+                  onTap: () {
+                    Get.toNamed(Routes.staffsScreen,
+                        arguments:
+                            StaffsScreen.buildArguments(forStaffLeave: true));
+                  })
+              : const SizedBox(),
+          (staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
+                      moduleId: staffLeaveManagementModuleId.toString()) &&
+                  staffAllowedPermissionsAndModulesCubit.isPermissionGiven(
+                      permission: approveLeavePermissionKey))
+              ? CustomMenuTile(
+                  iconImageName: "staff_leave.svg",
+                  titleKey: teacherLeaveKey,
+                  onTap: () {
+                    Get.toNamed(
+                      Routes.teachersScreen,
+                      arguments: TeachersScreen.buildArguments(
+                          teacherNavigationType: TeacherNavigationType.leave),
+                    );
+                  })
+              : const SizedBox(),
+        ]),
         (staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
                         moduleId: announcementManagementModuleId.toString()) &&
                     staffAllowedPermissionsAndModulesCubit.isPermissionGiven(
@@ -158,7 +207,7 @@ class StaffAcademicsContainer extends StatelessWidget {
                         moduleId: announcementManagementModuleId.toString()) &&
                     staffAllowedPermissionsAndModulesCubit.isPermissionGiven(
                         permission: viewAnnouncementPermissionKey))
-            ? MenusWithTitleContainer(title: messageKey, menus: [
+            ? MenusWithTitleContainer(title: announcementKey, menus: [
                 (staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
                             moduleId:
                                 announcementManagementModuleId.toString()) &&
@@ -183,56 +232,6 @@ class StaffAcademicsContainer extends StatelessWidget {
                         titleKey: manageAnnouncementKey,
                         onTap: () {
                           Get.toNamed(Routes.manageAnnouncementScreen);
-                        })
-                    : const SizedBox(),
-              ])
-            : const SizedBox(),
-        (staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
-                    moduleId: feesManagementModuleId.toString())) ||
-                (staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
-                    moduleId: expenseManagementModuleId.toString()))
-            ? MenusWithTitleContainer(title: paymentKey, menus: [
-                (staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
-                            moduleId: feesManagementModuleId.toString()) &&
-                        staffAllowedPermissionsAndModulesCubit
-                            .isPermissionGiven(
-                                permission: viewFeesPaidPermissionKey))
-                    ? CustomMenuTile(
-                        iconImageName: "paid_fees.svg",
-                        titleKey: paidFeesKey,
-                        onTap: () {
-                          Get.toNamed(Routes.paidFeesScreen);
-                        })
-                    : const SizedBox(),
-                (staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
-                            moduleId: expenseManagementModuleId.toString()) &&
-                        staffAllowedPermissionsAndModulesCubit
-                            .isPermissionGiven(
-                                permission: viewPayrollListPermissionKey))
-                    ? CustomMenuTile(
-                        iconImageName: "manage_payroll.svg",
-                        titleKey: managePayRollsKey,
-                        onTap: () {
-                          Get.toNamed(Routes.managePayrollScreen);
-                        })
-                    : const SizedBox(),
-                staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
-                        moduleId: expenseManagementModuleId.toString())
-                    ? CustomMenuTile(
-                        iconImageName: "my_payroll.svg",
-                        titleKey: myPayRollKey,
-                        onTap: () {
-                          Get.toNamed(Routes.myPayrollScreen);
-                        })
-                    : const SizedBox(),
-                //
-                staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
-                        moduleId: expenseManagementModuleId.toString())
-                    ? CustomMenuTile(
-                        iconImageName: "allowances_and_deductions.svg",
-                        titleKey: allowancesAndDeductionsKey,
-                        onTap: () {
-                          Get.toNamed(Routes.allowancesAndDeductionsScreen);
                         })
                     : const SizedBox(),
               ])
