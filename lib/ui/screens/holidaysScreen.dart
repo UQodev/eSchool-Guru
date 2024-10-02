@@ -30,6 +30,16 @@ class HolidaysScreen extends StatefulWidget {
 class _HolidaysScreenState extends State<HolidaysScreen> {
   @override
   Widget build(BuildContext context) {
+    // Sort holidays based on day, month, and year
+    final sortedHolidays = widget.holidays.toList()
+      ..sort((a, b) {
+        // Parse the holiday dates as DateTime objects
+        final dateA = DateTime.parse(a.date ?? "");
+        final dateB = DateTime.parse(b.date ?? "");
+
+        // Compare the entire DateTime object to ensure correct order
+        return dateA.compareTo(dateB);
+      });
     return Scaffold(
       body: Stack(
         children: [
@@ -41,7 +51,7 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                   right: appContentHorizontalPadding,
                   left: appContentHorizontalPadding),
               child: Column(
-                children: widget.holidays
+                children: sortedHolidays
                     .map(
                       (holiday) => HolidayContainer(
                         holiday: holiday,
