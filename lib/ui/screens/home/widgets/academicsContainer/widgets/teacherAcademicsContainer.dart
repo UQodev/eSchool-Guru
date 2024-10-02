@@ -1,7 +1,7 @@
 import 'package:eschool_saas_staff/app/routes.dart';
 import 'package:eschool_saas_staff/cubits/userDetails/staffAllowedPermissionsAndModulesCubit.dart';
 import 'package:eschool_saas_staff/ui/screens/home/widgets/menusWithTitleContainer.dart';
-import 'package:eschool_saas_staff/ui/screens/leaves/leavesScreen.dart';
+// import 'package:eschool_saas_staff/ui/screens/leaves/leavesScreen.dart';
 import 'package:eschool_saas_staff/ui/widgets/customMenuTile.dart';
 import 'package:eschool_saas_staff/utils/labelKeys.dart';
 import 'package:eschool_saas_staff/utils/systemModulesAndPermissions.dart';
@@ -80,7 +80,7 @@ class TeacherAcademicsContainer extends StatelessWidget {
           ]),
         if (staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
             moduleId: announcementManagementModuleId.toString()))
-          MenusWithTitleContainer(title: messageKey, menus: [
+          MenusWithTitleContainer(title: announcementKey, menus: [
             CustomMenuTile(
                 iconImageName: "announcement.svg",
                 titleKey: manageAnnouncementKey,
@@ -104,40 +104,40 @@ class TeacherAcademicsContainer extends StatelessWidget {
                   Get.toNamed(Routes.teacherExamResultScreen);
                 }),
           ]),
-        if (staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
-            moduleId: staffLeaveManagementModuleId.toString()))
-          MenusWithTitleContainer(title: leaveKey, menus: [
-            CustomMenuTile(
-                iconImageName: "apply_leave.svg",
-                titleKey: applyLeaveKey,
-                onTap: () {
-                  Get.toNamed(Routes.applyLeaveScreen);
-                }),
-            CustomMenuTile(
-                iconImageName: "my_leave.svg",
-                titleKey: myLeaveKey,
-                onTap: () {
-                  Get.toNamed(Routes.leavesScreen,
-                      arguments:
-                          LeavesScreen.buildArguments(showMyLeaves: true));
-                }),
-          ]),
-        if (staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
-            moduleId: attendanceManagementModuleId.toString()))
-          MenusWithTitleContainer(title: payrollKey, menus: [
-            CustomMenuTile(
-                iconImageName: "payroll_slip.svg",
-                titleKey: myPayrollSlipsKey,
-                onTap: () {
-                  Get.toNamed(Routes.myPayrollScreen);
-                }),
-            CustomMenuTile(
-                iconImageName: "allowances_and_deductions.svg",
-                titleKey: allowancesAndDeductionsKey,
-                onTap: () {
-                  Get.toNamed(Routes.allowancesAndDeductionsScreen);
-                }),
-          ]),
+        // if (staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
+        //     moduleId: staffLeaveManagementModuleId.toString()))
+        //   MenusWithTitleContainer(title: leaveKey, menus: [
+        //     CustomMenuTile(
+        //         iconImageName: "apply_leave.svg",
+        //         titleKey: applyLeaveKey,
+        //         onTap: () {
+        //           Get.toNamed(Routes.applyLeaveScreen);
+        //         }),
+        //     CustomMenuTile(
+        //         iconImageName: "my_leave.svg",
+        //         titleKey: myLeaveKey,
+        //         onTap: () {
+        //           Get.toNamed(Routes.leavesScreen,
+        //               arguments:
+        //                   LeavesScreen.buildArguments(showMyLeaves: true));
+        //         }),
+        //   ]),
+        // if (staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
+        //     moduleId: attendanceManagementModuleId.toString()))
+        //   MenusWithTitleContainer(title: payrollKey, menus: [
+        //     CustomMenuTile(
+        //         iconImageName: "payroll_slip.svg",
+        //         titleKey: myPayrollSlipsKey,
+        //         onTap: () {
+        //           Get.toNamed(Routes.myPayrollScreen);
+        //         }),
+        //     CustomMenuTile(
+        //         iconImageName: "allowances_and_deductions.svg",
+        //         titleKey: allowancesAndDeductionsKey,
+        //         onTap: () {
+        //           Get.toNamed(Routes.allowancesAndDeductionsScreen);
+        //         }),
+        //   ]),
       ],
     );
   }
