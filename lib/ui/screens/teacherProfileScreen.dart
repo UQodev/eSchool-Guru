@@ -247,7 +247,7 @@ class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
                         valyeKey: widget.teacher.staff?.salary != null
                             ? NumberFormat.currency(
                                     locale: 'id',
-                                    symbol: 'Rp ',
+                                    symbol: 'Rp',
                                     decimalDigits: 0)
                                 .format(widget.teacher.staff!.salary)
                             : "-",
