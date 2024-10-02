@@ -2,10 +2,13 @@ import 'package:eschool_saas_staff/app/routes.dart';
 // import 'package:eschool_saas_staff/cubits/appConfigurationCubit.dart';
 import 'package:eschool_saas_staff/cubits/appLocalizationCubit.dart';
 import 'package:eschool_saas_staff/cubits/authentication/authCubit.dart';
+// import 'package:eschool_saas_staff/cubits/userDetails/staffAllowedPermissionsAndModulesCubit.dart';
 import 'package:eschool_saas_staff/ui/screens/home/widgets/menuTile.dart';
 import 'package:eschool_saas_staff/ui/screens/home/widgets/menusWithTitleContainer.dart';
+import 'package:eschool_saas_staff/ui/screens/leaves/leavesScreen.dart';
 import 'package:eschool_saas_staff/ui/widgets/customAppbar.dart';
 import 'package:eschool_saas_staff/ui/widgets/customBottomsheet.dart';
+import 'package:eschool_saas_staff/ui/widgets/customMenuTile.dart';
 import 'package:eschool_saas_staff/ui/widgets/customRoundedButton.dart';
 import 'package:eschool_saas_staff/ui/widgets/customTextButton.dart';
 import 'package:eschool_saas_staff/ui/widgets/customTextContainer.dart';
@@ -14,6 +17,7 @@ import 'package:eschool_saas_staff/ui/widgets/profileImageContainer.dart';
 import 'package:eschool_saas_staff/utils/appLanguages.dart';
 import 'package:eschool_saas_staff/utils/constants.dart';
 import 'package:eschool_saas_staff/utils/labelKeys.dart';
+// import 'package:eschool_saas_staff/utils/systemModulesAndPermissions.dart';
 import 'package:eschool_saas_staff/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,6 +36,9 @@ class ProfileContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final StaffAllowedPermissionsAndModulesCubit
+    //     staffAllowedPermissionsAndModulesCubit =
+    //     context.read<StaffAllowedPermissionsAndModulesCubit>();
     return BlocBuilder<AuthCubit, AuthState>(builder: (context, authstate) {
       return Stack(
         children: [
@@ -59,6 +66,40 @@ class ProfileContainer extends StatelessWidget {
                         },
                         titleKey: changePasswordKey),
                   ], title: personalSettingsKey),
+                  // if (staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
+                  //     moduleId: staffLeaveManagementModuleId.toString()))
+                  MenusWithTitleContainer(title: leaveKey, menus: [
+                    CustomMenuTile(
+                        iconImageName: "apply_leave.svg",
+                        titleKey: applyLeaveKey,
+                        onTap: () {
+                          Get.toNamed(Routes.applyLeaveScreen);
+                        }),
+                    CustomMenuTile(
+                        iconImageName: "my_leave.svg",
+                        titleKey: myLeaveKey,
+                        onTap: () {
+                          Get.toNamed(Routes.leavesScreen,
+                              arguments: LeavesScreen.buildArguments(
+                                  showMyLeaves: true));
+                        }),
+                  ]),
+                  // if (staffAllowedPermissionsAndModulesCubit.isModuleEnabled(
+                  //     moduleId: attendanceManagementModuleId.toString()))
+                  MenusWithTitleContainer(title: payrollKey, menus: [
+                    CustomMenuTile(
+                        iconImageName: "payroll_slip.svg",
+                        titleKey: myPayrollSlipsKey,
+                        onTap: () {
+                          Get.toNamed(Routes.myPayrollScreen);
+                        }),
+                    CustomMenuTile(
+                        iconImageName: "allowances_and_deductions.svg",
+                        titleKey: allowancesAndDeductionsKey,
+                        onTap: () {
+                          Get.toNamed(Routes.allowancesAndDeductionsScreen);
+                        }),
+                  ]),
                   MenusWithTitleContainer(menus: [
                     // MenuTile(
                     //     iconImageName: "change_language.svg",
@@ -112,7 +153,7 @@ class ProfileContainer extends StatelessWidget {
                     //           context: context);
                     //     },
                     //     titleKey: shareAppKey),
-                  ], title: personalSettingsKey),
+                  ], title: informationKey),
                   CustomRoundedButton(
                     widthPercentage: 1.0,
                     backgroundColor: Theme.of(context).scaffoldBackgroundColor,
