@@ -92,7 +92,7 @@ class _MyAppState extends State<MyApp> {
         ],
         child: Builder(builder: (context) {
           return GetMaterialApp(
-            title: 'E-School Teacher',
+            title: 'E-School - Guru & Staff',
             debugShowCheckedModeBanner: false,
             translationsKeys: AppTranslation.translationsKeys,
             theme: Theme.of(context).copyWith(
