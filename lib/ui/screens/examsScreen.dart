@@ -100,96 +100,105 @@ class _ExamsScreenState extends State<ExamsScreen> {
   }
 
   Widget _buildExamItem({required OfflineExam offlineExam}) {
-    return Container(
-      width: double.maxFinite,
-      margin: EdgeInsets.symmetric(vertical: appContentHorizontalPadding),
-      decoration: BoxDecoration(
+    return GestureDetector(
+      onTap: () {
+        if ((offlineExam.timetableSlots ?? []).isNotEmpty) {
+          Utils.showBottomSheet(
+            child: OfflineExamTimetableBottomsheet(
+              timetableSlots: offlineExam.timetableSlots ?? [],
+            ),
+            context: context,
+          );
+        }
+      },
+      child: Container(
+        width: double.maxFinite,
+        margin: EdgeInsets.symmetric(vertical: appContentHorizontalPadding),
+        decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: Theme.of(context).colorScheme.tertiary)),
-      child: LayoutBuilder(builder: (context, boxConstraints) {
-        return Column(
-          children: [
-            Container(
-              padding: EdgeInsets.all(appContentHorizontalPadding),
-              width: boxConstraints.maxWidth,
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom:
-                      BorderSide(color: Theme.of(context).colorScheme.tertiary),
+          border: Border.all(color: Theme.of(context).colorScheme.tertiary),
+        ),
+        child: LayoutBuilder(builder: (context, boxConstraints) {
+          return Column(
+            children: [
+              Container(
+                padding: EdgeInsets.all(appContentHorizontalPadding),
+                width: boxConstraints.maxWidth,
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                        color: Theme.of(context).colorScheme.tertiary),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: CustomTextContainer(
+                        textKey: offlineExam.name ?? "-",
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    if ((offlineExam.timetableSlots ?? []).isNotEmpty)
+                      Icon(Icons.schedule),
+                  ],
                 ),
               ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: CustomTextContainer(
-                      textKey: offlineExam.name ?? "-",
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                          fontSize: 16.0, fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  (offlineExam.timetableSlots ?? []).isEmpty
-                      ? const SizedBox()
-                      : IconButton(
-                          onPressed: () {
-                            Utils.showBottomSheet(
-                                child: OfflineExamTimetableBottomsheet(
-                                    timetableSlots:
-                                        offlineExam.timetableSlots ?? []),
-                                context: context);
-                          },
-                          icon: const Icon(Icons.schedule))
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(appContentHorizontalPadding),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: _buildTitleValueContainer(
+              Padding(
+                padding: EdgeInsets.all(appContentHorizontalPadding),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: _buildTitleValueContainer(
                         showBorder: false,
                         titleKey: classSectionKey,
-                        value: offlineExam.className ?? "-"),
-                  ),
-                  SizedBox(
-                    height: 35,
-                    child: VerticalDivider(
-                      color: Theme.of(context).colorScheme.tertiary,
-                      thickness: 2,
+                        value: offlineExam.className ?? "-",
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    child: _buildTitleValueContainer(
-                      showBorder: true,
-                      titleKey: examDateKey,
-                      value: (offlineExam.examStartingDate ?? "").isEmpty
-                          ? "-"
-                          : Utils.getFormattedDate(
-                              DateTime.parse(offlineExam.examStartingDate!)),
+                    SizedBox(
+                      height: 35,
+                      child: VerticalDivider(
+                        color: Theme.of(context).colorScheme.tertiary,
+                        thickness: 2,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 35,
-                    child: VerticalDivider(
-                      color: Theme.of(context).colorScheme.tertiary,
-                      thickness: 2,
+                    Expanded(
+                      child: _buildTitleValueContainer(
+                        showBorder: true,
+                        titleKey: examDateKey,
+                        value: (offlineExam.examStartingDate ?? "").isEmpty
+                            ? "-"
+                            : Utils.getFormattedDate(
+                                DateTime.parse(offlineExam.examStartingDate!),
+                              ),
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    child: _buildTitleValueContainer(
+                    SizedBox(
+                      height: 35,
+                      child: VerticalDivider(
+                        color: Theme.of(context).colorScheme.tertiary,
+                        thickness: 2,
+                      ),
+                    ),
+                    Expanded(
+                      child: _buildTitleValueContainer(
                         showBorder: false,
                         titleKey: statusKey,
-                        value: offlineExam.getOfflineStatusKey()),
-                  ),
-                ],
+                        value: offlineExam.getOfflineStatusKey(),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
-        );
-      }),
+            ],
+          );
+        }),
+      ),
     );
   }
 
