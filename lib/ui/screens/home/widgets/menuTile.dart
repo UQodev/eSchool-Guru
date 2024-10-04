@@ -43,10 +43,10 @@ class MenuTile extends StatelessWidget {
             Expanded(
               child: CustomTextContainer(
                 textKey: titleKey,
-                maxLines: 1,
+                maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                    fontSize: 15.0, fontWeight: FontWeight.w500),
+                    fontSize: 14.0, fontWeight: FontWeight.w500),
               ),
             ),
             CircleAvatar(
