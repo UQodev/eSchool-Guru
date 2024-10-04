@@ -26,16 +26,17 @@ class LeavesContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(2.5)),
       padding: EdgeInsets.symmetric(vertical: appContentHorizontalPadding),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(
-            height: 15,
-          ),
           ContentTitleWithViewMoreButton(
             showViewMoreButton: true,
             contentTitleKey: leavesKey,
             viewMoreOnTap: () {
               Get.toNamed(Routes.generalLeavesScreen);
             },
+          ),
+          const SizedBox(
+            height: 15,
           ),
           todaysLeave.isEmpty
               ? Padding(
@@ -45,6 +46,7 @@ class LeavesContainer extends StatelessWidget {
                       textKey: everyoneIsPresentTodayKey),
                 )
               : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
                       height: 15,
