@@ -1,7 +1,7 @@
 import 'package:eschool_saas_staff/app/routes.dart';
 import 'package:eschool_saas_staff/cubits/userDetails/staffAllowedPermissionsAndModulesCubit.dart';
 import 'package:eschool_saas_staff/ui/screens/home/widgets/menusWithTitleContainer.dart';
-import 'package:eschool_saas_staff/ui/screens/leaves/leavesScreen.dart';
+// import 'package:eschool_saas_staff/ui/screens/leaves/leavesScreen.dart';
 import 'package:eschool_saas_staff/ui/screens/staffsScreen.dart';
 import 'package:eschool_saas_staff/ui/screens/teachersScreen.dart';
 import 'package:eschool_saas_staff/ui/widgets/customMenuTile.dart';
@@ -138,7 +138,7 @@ class StaffAcademicsContainer extends StatelessWidget {
                         permission: viewExamResultPermissionKey)
                     ? CustomMenuTile(
                         iconImageName: "offline_result.svg",
-                        titleKey: offlineResultKey,
+                        titleKey: resultKey,
                         onTap: () {
                           Get.toNamed(Routes.offlineResultScreen);
                         })
