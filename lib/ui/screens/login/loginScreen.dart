@@ -140,7 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 75,
                   ),
                   const CustomTextContainer(
-                    textKey: letSignInKey,
+                    textKey: teacherAndStaffKey,
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
                   ),
                   const SizedBox(
