@@ -410,7 +410,7 @@ class _StudentsScreenState extends State<StudentsScreen> {
                                                       ),
                                                       CustomTextContainer(
                                                         textKey:
-                                                            "NIS : ${studentDetails.student?.admissionNo ?? '-'}",
+                                                            "No Pendaftaran : ${studentDetails.student?.admissionNo ?? '-'}",
                                                         style: TextStyle(
                                                             color: Theme.of(
                                                                     context)
