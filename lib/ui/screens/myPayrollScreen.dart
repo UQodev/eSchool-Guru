@@ -277,7 +277,7 @@ class _MyPayrollDetailsContainerState extends State<MyPayrollDetailsContainer>
 
   //
   late final Animation<double> _heightAnimation =
-      Tween<double>(begin: 170, end: 332).animate(CurvedAnimation(
+      Tween<double>(begin: 170, end: 350).animate(CurvedAnimation(
           parent: _animationController, curve: const Interval(0.0, 0.5)));
 
   late final Animation<double> _opacityAnimation =
@@ -509,24 +509,39 @@ class _MyPayrollDetailsContainerState extends State<MyPayrollDetailsContainer>
                                         value: widget.payRoll.takenLeaves
                                                 ?.toStringAsFixed(0) ??
                                             "-"),
-                                    CustomTextButton(
-                                        buttonTextKey: downloadSalarySlipKey,
-                                        textStyle: TextStyle(
-                                            fontSize: 16.0,
-                                            fontWeight: FontWeight.w600,
-                                            decoration:
-                                                TextDecoration.underline,
+                                    Center(
+                                      child: Container(
+                                        margin:
+                                            EdgeInsets.symmetric(vertical: 20),
+                                        decoration: BoxDecoration(
                                             color: Theme.of(context)
                                                 .colorScheme
-                                                .primary),
-                                        onTapButton: () {
-                                          Get.dialog(BlocProvider(
-                                            create: (context) =>
-                                                DownloadPayRollSlipCubit(),
-                                            child: DownloadPayRollSlipDialog(
-                                                payRoll: widget.payRoll),
-                                          ));
-                                        })
+                                                .primary,
+                                            borderRadius:
+                                                BorderRadius.circular(6.0)),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 10, vertical: 5),
+                                        child: CustomTextButton(
+                                            buttonTextKey:
+                                                downloadSalarySlipKey,
+                                            icon: Icon(Icons.download_rounded,
+                                                color: Colors.white),
+                                            textStyle: TextStyle(
+                                                fontSize: 15.0,
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.white),
+                                            onTapButton: () {
+                                              Get.dialog(BlocProvider(
+                                                create: (context) =>
+                                                    DownloadPayRollSlipCubit(),
+                                                child:
+                                                    DownloadPayRollSlipDialog(
+                                                        payRoll:
+                                                            widget.payRoll),
+                                              ));
+                                            }),
+                                      ),
+                                    )
                                   ],
                                 ),
                               ),
