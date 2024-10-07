@@ -23,7 +23,7 @@ class OverviewDetailsContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsetsDirectional.only(end: 15.0),
-      width: 265,
+      width: 275,
       height: double.maxFinite,
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
@@ -50,7 +50,7 @@ class OverviewDetailsContainer extends StatelessWidget {
                   CustomTextContainer(
                     textKey: value,
                     style: const TextStyle(
-                        fontSize: 24.0, fontWeight: FontWeight.w600),
+                        fontSize: 20.0, fontWeight: FontWeight.w600),
                   ),
                   CustomTextContainer(
                     textKey: titleKey,
