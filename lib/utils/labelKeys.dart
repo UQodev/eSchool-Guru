@@ -1,3 +1,4 @@
+const String teacherAndStaffKey = "teacherAndStaff";
 const String letSignInKey = "letSignIn";
 const String signInScreenSubTitleKey = "signInScreenSubTitle";
 const String defaultErrorMessageKey = "defaultErrorMessage";
@@ -84,6 +85,7 @@ const String leaveReasonKey = "leaveReason";
 const String rejectKey = "reject";
 const String approveKey = "approve";
 const String timetableKey = "timetable";
+const String teacherTimetableKey = "teacherTimetable";
 const String mondayKey = "mon";
 const String tuesdayKey = "tue";
 const String wednesdayKey = "wed";
@@ -173,11 +175,13 @@ const String monthlyLeaveDeductionKey = "monthlyLeaveDeduction";
 const String downloadSalarySlipKey = "downloadSalarySlip";
 
 const String downloadFeeReceiptKey = "downloadFeeReceipt";
+const String accountKey = "account";
 const String personalSettingsKey = "personalSettings";
 const String editProfileKey = "editProfile";
 const String changePasswordKey = "changePassword";
 const String moreSettingsKey = "moreSettings";
 const String changeLanguageKey = "changeLanguage";
+const String informationKey = "information";
 const String aboutUsKey = "aboutUs";
 const String contactUsKey = "contactUs";
 const String rateUsKey = "rateUs";
