@@ -20,25 +20,26 @@ class CustomTextFieldContainer extends StatelessWidget {
   final bool? enabled;
   final TextInputType? keyboardType;
   final List<TextInputFormatter>? inputFormatters;
-  const CustomTextFieldContainer({
-    super.key,
-    this.bottomPadding,
-    this.enabled,
-    this.suffixWidget,
-    this.prefixWidget,
-    this.hideText = false,
-    this.backgroundColor,
-    required this.hintTextKey,
-    this.height,
-    this.maxLines,
-    this.textEditingController,
-    this.initialValue,
-    this.borderColor,
-    this.labelTextKey,
-    this.padding,
-    this.keyboardType,
-    this.inputFormatters,
-  });
+  final Color textColor;
+  const CustomTextFieldContainer(
+      {super.key,
+      this.bottomPadding,
+      this.enabled,
+      this.suffixWidget,
+      this.prefixWidget,
+      this.hideText = false,
+      this.backgroundColor,
+      required this.hintTextKey,
+      this.height,
+      this.maxLines,
+      this.textEditingController,
+      this.initialValue,
+      this.borderColor,
+      this.labelTextKey,
+      this.padding,
+      this.keyboardType,
+      this.inputFormatters,
+      this.textColor = Colors.black});
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +64,7 @@ class CustomTextFieldContainer extends StatelessWidget {
         maxLines: maxLines ?? 1,
         style: TextStyle(
             color: labelTextKey == null
-                ? Theme.of(context).colorScheme.secondary.withOpacity(0.76)
+                ? Colors.black
                 : Theme.of(context).colorScheme.secondary,
             fontSize: 15.0),
         inputFormatters: inputFormatters,
