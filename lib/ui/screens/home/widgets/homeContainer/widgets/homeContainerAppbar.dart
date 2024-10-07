@@ -33,48 +33,61 @@ class HomeContainerAppbar extends StatelessWidget {
           alignment: Alignment.center,
           child: Row(
             children: [
-              CircleAvatar(
-                backgroundColor: Theme.of(context).colorScheme.primary,
-                radius: 25,
-                backgroundImage: profileImage.isNotEmpty
-                    ? CachedNetworkImageProvider(
-                        profileImage,
-                      )
-                    : null,
-                child: profileImage.isEmpty ? const Icon(Icons.person) : null,
+              GestureDetector(
+                onTap: () {
+                  // Navigate to the profile edit screen when tapped
+                  Get.toNamed(Routes.editProfileScreen);
+                },
+                child: CircleAvatar(
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  radius: 25,
+                  backgroundImage: profileImage.isNotEmpty
+                      ? CachedNetworkImageProvider(profileImage)
+                      : null,
+                  child: profileImage.isEmpty ? const Icon(Icons.person) : null,
+                ),
               ),
               const SizedBox(
                 width: 15.0,
               ),
               Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    // Navigate to the profile edit screen when tapped
+                    Get.toNamed(Routes.editProfileScreen);
+                  },
                   child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomTextContainer(
-                    textKey: hiWelcomebackKey,
-                    style: TextStyle(
-                      fontSize: 13.0,
-                      color: Theme.of(context)
-                          .colorScheme
-                          .secondary
-                          .withOpacity(0.65),
-                    ),
-                  ),
-                  CustomTextContainer(
-                    textKey:
-                        context.read<AuthCubit>().getUserDetails().fullName ??
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomTextContainer(
+                        textKey: hiWelcomebackKey,
+                        style: TextStyle(
+                          fontSize: 13.0,
+                          color: Theme.of(context)
+                              .colorScheme
+                              .secondary
+                              .withOpacity(0.65),
+                        ),
+                      ),
+                      CustomTextContainer(
+                        textKey: context
+                                .read<AuthCubit>()
+                                .getUserDetails()
+                                .fullName ??
                             "",
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        height: 1.0,
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.w600,
-                        color: Theme.of(context).colorScheme.secondary),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            height: 1.0,
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).colorScheme.secondary),
+                      ),
+                    ],
                   ),
-                ],
-              )),
+                ),
+              ),
               InkWell(
                 radius: 40,
                 onTap: () {
