@@ -30,7 +30,7 @@ class HolidayContainer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            width: 120,
+            width: 130,
             height: double.maxFinite,
             decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.primary,
@@ -43,7 +43,7 @@ class HolidayContainer extends StatelessWidget {
                 CustomTextContainer(
                   textKey: holidayDateTime.day.toString(),
                   style: TextStyle(
-                      fontSize: 30.0,
+                      fontSize: 25.0,
                       color: Theme.of(context).scaffoldBackgroundColor,
                       fontWeight: FontWeight.w600),
                 ),
@@ -51,7 +51,7 @@ class HolidayContainer extends StatelessWidget {
                   textKey: months[holidayDateTime.month - 1],
                   style: TextStyle(
                     height: 1,
-                    fontSize: 18.0,
+                    fontSize: 15.0,
                     color: Theme.of(context).scaffoldBackgroundColor,
                   ),
                 ),
@@ -59,7 +59,7 @@ class HolidayContainer extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            width: 15.0,
+            width: 8.0,
           ),
           Flexible(
               child: Column(
@@ -69,8 +69,8 @@ class HolidayContainer extends StatelessWidget {
               CustomTextContainer(
                 textKey: holiday.title ?? "",
                 style: const TextStyle(
-                    fontSize: 18.0, fontWeight: FontWeight.w600),
-                maxLines: 1,
+                    fontSize: 15.0, fontWeight: FontWeight.w600),
+                maxLines: 3,
               ),
               const SizedBox(
                 height: 5.0,
