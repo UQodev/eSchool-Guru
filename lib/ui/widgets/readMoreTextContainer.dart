@@ -28,8 +28,9 @@ class ReadMoreTextContainer extends StatelessWidget {
       text,
       trimLines: trimLines ?? 3,
       trimMode: TrimMode.Line,
+      // Show More & Show less
       trimCollapsedText: 'Lebih banyak',
-      trimExpandedText: 'Lebih Sedikit',
+      trimExpandedText: 'Lebih sedikit',
       style: textStyle ??
           TextStyle(
               color: Theme.of(context).colorScheme.secondary.withOpacity(0.75)),
