@@ -34,7 +34,7 @@ class _AdminNotificationDetailsContainerState
       AnimationController(vsync: this, duration: tileCollapsedDuration);
 
   late final Animation<double> _heightAnimation =
-      Tween<double>(begin: 75, end: 215).animate(CurvedAnimation(
+      Tween<double>(begin: 75, end: 300).animate(CurvedAnimation(
           parent: _animationController, curve: const Interval(0.0, 0.5)));
 
   late final Animation<double> _opacityAnimation =
@@ -135,7 +135,7 @@ class _AdminNotificationDetailsContainerState
                                   CustomTextContainer(
                                     textKey: messageKey,
                                     style: TextStyle(
-                                        fontSize: 13.0,
+                                        fontSize: 15.0,
                                         color: Theme.of(context)
                                             .colorScheme
                                             .secondary
@@ -181,7 +181,7 @@ class _AdminNotificationDetailsContainerState
                                         Theme.of(context).colorScheme.tertiary,
                                   ),
                                   const SizedBox(
-                                    height: 2.5,
+                                    height: 5,
                                   ),
                                   Row(
                                     children: [
@@ -199,7 +199,9 @@ class _AdminNotificationDetailsContainerState
                                               width: 50,
                                               height: 50,
                                             )
-                                          : const SizedBox(),
+                                          : const SizedBox(
+                                              height: 50,
+                                            ),
                                       const Spacer(),
                                       context
                                               .read<
