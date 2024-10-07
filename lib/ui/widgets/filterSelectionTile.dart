@@ -31,7 +31,7 @@ class FilterSelectionTile extends StatelessWidget {
               Expanded(
                   child: CustomTextContainer(
                 textKey: title,
-                maxLines: 2,
+                maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(fontSize: 16.0),
               )),
