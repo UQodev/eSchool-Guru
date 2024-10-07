@@ -60,10 +60,10 @@ class _LeaveRequestsScreenState extends State<LeaveRequestsScreen> {
 
   Widget _buildLeaveRequestDetails({required LeaveRequest leaveRequest}) {
     final titleTextStyle = TextStyle(
-        fontSize: 13.0,
+        fontSize: 12.0,
         color: Theme.of(context).colorScheme.secondary.withOpacity(0.75));
     const dateTextStyle =
-        TextStyle(fontSize: 15.0, fontWeight: FontWeight.w600);
+        TextStyle(fontSize: 12.0, fontWeight: FontWeight.w600);
     return Container(
       margin: const EdgeInsets.only(bottom: 20),
       padding: EdgeInsets.all(appContentHorizontalPadding),
@@ -88,10 +88,10 @@ class _LeaveRequestsScreenState extends State<LeaveRequestsScreen> {
                 children: [
                   CustomTextContainer(
                     textKey: leaveRequest.user?.fullName ?? "",
-                    maxLines: 1,
+                    maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
-                        fontSize: 16.0, fontWeight: FontWeight.w600),
+                        fontSize: 15.0, fontWeight: FontWeight.w600),
                   ),
                 ],
               )),
