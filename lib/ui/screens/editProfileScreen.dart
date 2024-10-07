@@ -189,14 +189,27 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   }
 
   Widget _buildGenderSelector() {
-    return Row(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Expanded(flex: 1, child: _buildRadioselection("male", "male")),
-        const SizedBox(
-          width: 20,
+      children: [
+        CustomTextContainer(
+          textKey: genderKey,
+          style: TextStyle(
+            fontSize: 13.0,
+            color: Theme.of(context).colorScheme.secondary.withOpacity(0.76),
+          ),
         ),
-        Expanded(flex: 1, child: _buildRadioselection("female", "female")),
+        const SizedBox(height: 10.0),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Expanded(flex: 1, child: _buildRadioselection("male", "male")),
+            const SizedBox(
+              width: 20,
+            ),
+            Expanded(flex: 1, child: _buildRadioselection("female", "female")),
+          ],
+        ),
       ],
     );
   }
@@ -215,7 +228,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             height: 40,
             widthPercentage: 1.0,
             backgroundColor: Theme.of(context).colorScheme.primary,
-            buttonTitle: updateProfileKey,
+            buttonTitle: editProfileKey,
             showBorder: false,
             child: state is EditProfileProgress
                 ? const CustomCircularProgressIndicator()
