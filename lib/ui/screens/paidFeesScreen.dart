@@ -395,7 +395,7 @@ class _StudentPaidFeeDetailsContainerState
       AnimationController(vsync: this, duration: tileCollapsedDuration);
 
   late final Animation<double> _heightAnimation =
-      Tween<double>(begin: 65, end: 300).animate(CurvedAnimation(
+      Tween<double>(begin: 65, end: 450).animate(CurvedAnimation(
           parent: _animationController, curve: const Interval(0.0, 0.5)));
 
   late final Animation<double> _opacityAnimation =
@@ -429,10 +429,11 @@ class _StudentPaidFeeDetailsContainerState
         return Row(
           children: [
             SizedBox(
-              width: boxConstraints.maxWidth * (0.5),
+              width: boxConstraints.maxWidth * (0.425),
               child: CustomTextContainer(
                 textKey: title,
                 style: titleStyle,
+                maxLines: 4,
               ),
             ),
             CustomTextContainer(
@@ -443,6 +444,7 @@ class _StudentPaidFeeDetailsContainerState
             CustomTextContainer(
               textKey: value,
               style: const TextStyle(fontWeight: FontWeight.w600),
+              maxLines: 4,
             )
           ],
         );
@@ -563,27 +565,41 @@ class _StudentPaidFeeDetailsContainerState
                                     widget.studentDetails.paidFeeDetails
                                                 ?.feesId !=
                                             null
-                                        ? CustomTextButton(
-                                            buttonTextKey:
-                                                downloadFeeReceiptKey,
-                                            textStyle: TextStyle(
-                                                fontSize: 15.0,
-                                                fontWeight: FontWeight.w600,
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .primary,
-                                                decoration:
-                                                    TextDecoration.underline),
-                                            onTapButton: () {
-                                              Get.dialog(BlocProvider(
-                                                create: (context) =>
-                                                    DownloadStudentFeeReceiptCubit(),
-                                                child:
-                                                    DownloadStudentFeeReceiptDialog(
-                                                        studentDetails: widget
-                                                            .studentDetails),
-                                              ));
-                                            })
+                                        ? Center(
+                                            child: Container(
+                                              margin: EdgeInsets.symmetric(
+                                                  vertical: 20),
+                                              decoration: BoxDecoration(
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .primary,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          6.0)),
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 10, vertical: 5),
+                                              child: CustomTextButton(
+                                                  buttonTextKey:
+                                                      downloadFeeReceiptKey,
+                                                  icon: Icon(
+                                                      Icons.download_rounded,
+                                                      color: Colors.white),
+                                                  textStyle: TextStyle(
+                                                    fontSize: 15.0,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Colors.white,
+                                                  ),
+                                                  onTapButton: () {
+                                                    Get.dialog(BlocProvider(
+                                                      create: (context) =>
+                                                          DownloadStudentFeeReceiptCubit(),
+                                                      child: DownloadStudentFeeReceiptDialog(
+                                                          studentDetails: widget
+                                                              .studentDetails),
+                                                    ));
+                                                  }),
+                                            ),
+                                          )
                                         : const SizedBox()
                                   ],
                                 ),
