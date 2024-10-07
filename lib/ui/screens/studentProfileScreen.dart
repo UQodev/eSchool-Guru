@@ -197,7 +197,7 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                   ),
                   CustomTextContainer(
                     textKey:
-                        "NIS : ${widget.studentDetails.student?.admissionNo ?? '-'}",
+                        "No Pendaftaran : ${widget.studentDetails.student?.admissionNo ?? '-'}",
                     style: TextStyle(
                         color: Theme.of(context)
                             .colorScheme
@@ -274,11 +274,20 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                   valyeKey: widget.sessionYear.name ?? "-"),
               _buildStudentDetailsTitleAndValueContainer(
                   titleKey: admissionDateKey,
+                  // valyeKey: (widget.studentDetails.student?.admissionDate ?? "")
+                  //         .isEmpty
+                  //     ? "-"
+                  //     : Utils.formatDate(DateTime.parse(
+                  //         widget.studentDetails.student!.admissionDate!))),
                   valyeKey: (widget.studentDetails.student?.admissionDate ?? "")
                           .isEmpty
                       ? "-"
                       : Utils.formatDate(DateTime.parse(
-                          widget.studentDetails.student!.admissionDate!))),
+                              widget.studentDetails.student!.admissionDate!))
+                          .split(' ') // memisahkan berdasarkan spasi
+                          .sublist(
+                              1) // mengambil elemen mulai dari index ke-1 (tanggal, bulan, tahun)
+                          .join(' ')),
               _buildStudentDetailsTitleAndValueContainer(
                   titleKey: classSectionKey,
                   valyeKey: widget.classSection.fullName ?? "-"),
