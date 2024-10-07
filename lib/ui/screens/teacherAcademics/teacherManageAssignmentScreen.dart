@@ -139,6 +139,11 @@ class _TeacherManageAssignmentScreenState
           return BlocConsumer<DeleteAssignmentCubit, DeleteAssignmentState>(
               listener: (context, state) {
             if (state is DeleteAssignmentSuccess) {
+              Utils.showSnackBar(
+                context: context,
+                message:
+                    "${Utils.getTranslatedLabel(assignmentDeletedSuccessfullyKey)} ${assignment.name}",
+              );
               context.read<AssignmentCubit>().deleteAssignment(assignment.id);
             } else if (state is DeleteAssignmentFailure) {
               Utils.showSnackBar(

@@ -151,6 +151,11 @@ class _TeacherManageTopicScreenState extends State<TeacherManageTopicScreen> {
         return BlocConsumer<DeleteTopicCubit, DeleteTopicState>(
           listener: (context, state) {
             if (state is DeleteTopicSuccess) {
+              Utils.showSnackBar(
+                context: context,
+                message:
+                    "${Utils.getTranslatedLabel(topicDeletedSuccessfullyKey)} ${topic.name}",
+              );
               context.read<TopicsCubit>().deleteTopic(topic.id);
             } else if (state is DeleteTopicFailure) {
               Utils.showSnackBar(
@@ -221,7 +226,17 @@ class _TeacherManageTopicScreenState extends State<TeacherManageTopicScreen> {
           builder: (context, state) {
             if (state is TopicsFetchSuccess) {
               if (state.topics.isEmpty) {
-                return const SizedBox.shrink();
+                return Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      top: Utils.appContentTopScrollPadding(context: context) +
+                          150,
+                    ),
+                    child: CustomTextContainer(
+                      textKey: Utils.getTranslatedLabel(noTopicKey),
+                    ),
+                  ),
+                );
               }
               return Container(
                 padding: EdgeInsets.all(appContentHorizontalPadding),

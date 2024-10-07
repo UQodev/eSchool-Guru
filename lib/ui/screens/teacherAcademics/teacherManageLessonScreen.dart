@@ -112,6 +112,11 @@ class _TeacherManageLessonScreenState extends State<TeacherManageLessonScreen> {
         return BlocConsumer<DeleteLessonCubit, DeleteLessonState>(
           listener: (context, state) {
             if (state is DeleteLessonSuccess) {
+              Utils.showSnackBar(
+                context: context,
+                message:
+                    "${Utils.getTranslatedLabel(lessonDeletedSuccessfullyKey)} ${lesson.name}",
+              );
               context.read<LessonsCubit>().deleteLesson(lesson.id);
             } else if (state is DeleteLessonFailure) {
               Utils.showSnackBar(

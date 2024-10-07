@@ -138,6 +138,10 @@ class _TeacherManageAnnouncementScreenState
               context
                   .read<TeacherAnnouncementsCubit>()
                   .deleteTeacherAnnouncement(announcementId: announcement.id);
+              Utils.showSnackBar(
+                context: context,
+                message: deleteAnnouncementSuccessfullyKey,
+              );
             } else if (state is TeacherDeleteAnnouncementFailure) {
               Utils.showSnackBar(
                 context: context,
