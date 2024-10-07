@@ -82,6 +82,15 @@ class _StudentsAttendanceScreenState extends State<StudentsAttendanceScreen> {
     if (_selectedAttendanceStatus == presentKey) {
       return 1;
     }
+    if (_selectedAttendanceStatus == sickKey) {
+      return 2;
+    }
+    if (_selectedAttendanceStatus == permissionKey) {
+      return 3;
+    }
+    if (_selectedAttendanceStatus == alpaKey) {
+      return 4;
+    }
     return null;
   }
 
@@ -159,21 +168,21 @@ class _StudentsAttendanceScreenState extends State<StudentsAttendanceScreen> {
                               return Row(
                                 children: [
                                   SizedBox(
-                                    width: boxConstraints.maxWidth * (0.5),
+                                    width: boxConstraints.maxWidth * (0.2),
                                     child: const CustomTextContainer(
                                       textKey: rollNoKey,
                                       style: titleStyle,
                                     ),
                                   ),
                                   SizedBox(
-                                    width: boxConstraints.maxWidth * (0.5),
+                                    width: boxConstraints.maxWidth * (0.6),
                                     child: const CustomTextContainer(
                                       textKey: nameKey,
                                       style: titleStyle,
                                     ),
                                   ),
                                   SizedBox(
-                                    width: boxConstraints.maxWidth * (0.5),
+                                    width: boxConstraints.maxWidth * (0.2),
                                     child: const CustomTextContainer(
                                       textKey: statusKey,
                                       style: titleStyle,
@@ -216,6 +225,15 @@ class _StudentsAttendanceScreenState extends State<StudentsAttendanceScreen> {
                               isPresent: getStudentAttendanceStatusFromValue(
                                       studentAttendance.type ?? 0) ==
                                   StudentAttendanceStatus.present,
+                              isSick: getStudentAttendanceStatusFromValue(
+                                      studentAttendance.type ?? 0) ==
+                                  StudentAttendanceStatus.sick,
+                              isPermission: getStudentAttendanceStatusFromValue(
+                                      studentAttendance.type ?? 0) ==
+                                  StudentAttendanceStatus.permission,
+                              isAlpa: getStudentAttendanceStatusFromValue(
+                                      studentAttendance.type ?? 0) ==
+                                  StudentAttendanceStatus.alpa,
                               showStatusPicker: false,
                             );
                           }),

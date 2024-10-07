@@ -91,4 +91,20 @@ class StudentAttendance {
   bool isPresent() {
     return type == 1;
   }
+
+  bool isAbsent() {
+    return type == 0;
+  }
+
+  bool isSick() {
+    return type == 2;
+  }
+
+  bool isPermission() {
+    return type == 3;
+  }
+
+  bool isAlpa() {
+    return type == 4;
+  }
 }

@@ -6,9 +6,10 @@ import 'package:flutter/material.dart';
 ///[Do not add / at the end of the url]
 // const String baseUrl = "https://collie-kind-hippo.ngrok-free.app"; // ngrok uqi
 // const String baseUrl = "https://expert-eternal-treefrog.ngrok-free.app"; // ngrok rizki
+const String baseUrl = "https://eschool.ryve.cloud"; // minipc
 // const String baseUrl = "https://eschool.dioo.my.id";
-// const String baseUrl = "https://eschool-saas.wrteam.me"; // url default
-const String baseUrl = "https://eschool.ac.id";
+// const String baseUrl = "https://eschool-saas.wrteam.me"; // url demo
+// const String baseUrl = "https://eschool.ac.id"; // url default
 // const String baseUrl = "8.219.122.93";
 
 //https://eschool-saas.wrteam.me - Production
@@ -118,21 +119,40 @@ String getLeaveRequestStatusKey(LeaveRequestStatus leaveRequestStatus) {
 
 enum StudentListStatus { all, active, inactive }
 
-// 0 => Absent, 1 => Present
-enum StudentAttendanceStatus { absent, present }
+// 0 => Absent, 1 => Present, 2 => Sick, 3 => Permission, 4 => Alpha
+enum StudentAttendanceStatus { absent, present, sick, permission, alpa }
 
 StudentAttendanceStatus getStudentAttendanceStatusFromValue(int status) {
   if (status == 0) {
     return StudentAttendanceStatus.absent;
   }
-
-  return StudentAttendanceStatus.present;
+  if (status == 1) {
+    return StudentAttendanceStatus.present;
+  }
+  if (status == 2) {
+    return StudentAttendanceStatus.sick;
+  }
+  if (status == 3) {
+    return StudentAttendanceStatus.permission;
+  }
+  if (status == 4) {
+    return StudentAttendanceStatus.alpa;
+  }
+  return StudentAttendanceStatus.absent;
 }
 
 String getStudentAttendanceStatusKey(
     StudentAttendanceStatus studentAttendanceStatus) {
   if (studentAttendanceStatus == StudentAttendanceStatus.absent) {
     return absentKey;
+  } else if (studentAttendanceStatus == StudentAttendanceStatus.present) {
+    return presentKey;
+  } else if (studentAttendanceStatus == StudentAttendanceStatus.sick) {
+    return sickKey;
+  } else if (studentAttendanceStatus == StudentAttendanceStatus.permission) {
+    return permissionKey;
+  } else if (studentAttendanceStatus == StudentAttendanceStatus.alpa) {
+    return alpaKey;
   }
   return presentKey;
 }

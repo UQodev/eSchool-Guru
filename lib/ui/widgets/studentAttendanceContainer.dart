@@ -25,12 +25,22 @@ class StudentAttendanceContainer extends StatefulWidget {
 
 class _StudentAttendanceContainerState
     extends State<StudentAttendanceContainer> {
-  late List<StudentAttendanceStatus> allAttendanceStatuses = widget
-      .studentAttendances
-      .map((e) => e.isPresent()
-          ? StudentAttendanceStatus.present
-          : StudentAttendanceStatus.absent)
-      .toList();
+  late List<StudentAttendanceStatus> allAttendanceStatuses =
+      widget.studentAttendances.map((e) {
+    if (e.isPresent()) {
+      return StudentAttendanceStatus.present;
+    } else if (e.isAbsent()) {
+      return StudentAttendanceStatus.absent;
+    } else if (e.isSick()) {
+      return StudentAttendanceStatus.sick;
+    } else if (e.isPermission()) {
+      return StudentAttendanceStatus.permission;
+    } else if (e.isAlpa()) {
+      return StudentAttendanceStatus.alpa;
+    } else {
+      return StudentAttendanceStatus.absent; // Default jika tidak ada match
+    }
+  }).toList();
 
   @override
   void initState() {
@@ -109,6 +119,9 @@ class _StudentAttendanceContainerState
                   StudentDetails.fromJson({}),
               showStatusPicker: widget.isForAddAttendance,
               isPresent: widget.studentAttendances[index].isPresent(),
+              isSick: widget.studentAttendances[index].isSick(),
+              isPermission: widget.studentAttendances[index].isPermission(),
+              isAlpa: widget.studentAttendances[index].isAlpa(),
               onChangeAttendance: (StudentAttendanceStatus status) {
                 allAttendanceStatuses[index] = status;
                 if (widget.onStatusChanged != null) {

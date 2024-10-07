@@ -50,6 +50,7 @@ class _TeacherViewAttendanceScreenState
   bool? isPresentStatusOnly;
   DateTime _selectedDateTime = DateTime.now();
   ClassSection? _selectedClassSection;
+  StudentAttendanceStatus? selectedStatus;
 
   @override
   void initState() {
@@ -59,15 +60,26 @@ class _TeacherViewAttendanceScreenState
     super.initState();
   }
 
-  void getAttendance() {
+  void getAttendance({StudentAttendanceStatus? selectedStatus}) {
     context.read<AttendanceCubit>().fetchAttendance(
         date: _selectedDateTime,
         classSectionId: _selectedClassSection?.id ?? 0,
         type: isPresentStatusOnly == null
-            ? null
+            ? (selectedStatus == null
+                ? null
+                : selectedStatus == StudentAttendanceStatus.present
+                    ? 1
+                    : selectedStatus == StudentAttendanceStatus.sick
+                        ? 2
+                        : selectedStatus == StudentAttendanceStatus.permission
+                            ? 3
+                            : selectedStatus == StudentAttendanceStatus.alpa
+                                ? 4
+                                : 0) // Default for absent
             : isPresentStatusOnly!
                 ? 1
-                : 0);
+                : 0 // For absent (includes Sick, Permission, and Alpa)
+        );
   }
 
   Widget _buildTotalTitleContainer(
@@ -100,7 +112,7 @@ class _TeacherViewAttendanceScreenState
       alignment: Alignment.topCenter,
       child: SingleChildScrollView(
         padding: EdgeInsets.only(
-            top: Utils.appContentTopScrollPadding(context: context) + 150),
+            top: Utils.appContentTopScrollPadding(context: context) + 145),
         child: BlocBuilder<AttendanceCubit, AttendanceState>(
           builder: (context, state) {
             if (state is AttendanceFetchSuccess) {
@@ -153,7 +165,7 @@ class _TeacherViewAttendanceScreenState
                           backgroundColor: Theme.of(context)
                               .extension<CustomColors>()!
                               .totalStaffOverviewBackgroundColor!
-                              .withOpacity(0.15),
+                              .withOpacity(0.3),
                           title: presentKey,
                           value: state.attendance
                               .where((element) => element.isPresent())
@@ -169,10 +181,68 @@ class _TeacherViewAttendanceScreenState
                           backgroundColor: Theme.of(context)
                               .extension<CustomColors>()!
                               .totalStudentOverviewBackgroundColor!
-                              .withOpacity(0.15),
+                              .withOpacity(0.3),
                           title: absentKey,
                           value: state.attendance
                               .where((element) => !element.isPresent())
+                              .length
+                              .toString(),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Row(
+                    children: [
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Expanded(
+                        child: _buildTotalTitleContainer(
+                          backgroundColor: Theme.of(context)
+                              .extension<CustomColors>()!
+                              .sickBackgroundColor!
+                              .withOpacity(0.3),
+                          title: sickKey,
+                          value: state.attendance
+                              .where((element) => element.isSick())
+                              .length
+                              .toString(),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: _buildTotalTitleContainer(
+                          backgroundColor: Theme.of(context)
+                              .extension<CustomColors>()!
+                              .permissionBackgroundColor!
+                              .withOpacity(0.3),
+                          title: permissionKey,
+                          value: state.attendance
+                              .where((element) => element.isPermission())
+                              .length
+                              .toString(),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: _buildTotalTitleContainer(
+                          backgroundColor: Theme.of(context)
+                              .extension<CustomColors>()!
+                              .totalStudentOverviewBackgroundColor!
+                              .withOpacity(0.3),
+                          title: alpaKey,
+                          value: state.attendance
+                              .where((element) => element.isAlpa())
                               .length
                               .toString(),
                         ),
@@ -285,15 +355,55 @@ class _TeacherViewAttendanceScreenState
                                           bool refreshPage = false;
                                           if (value == allKey &&
                                               isPresentStatusOnly != null) {
+                                            // Handle case for "Semua"
                                             isPresentStatusOnly = null;
-                                            refreshPage = true;
-                                          } else if (value == absentKey &&
-                                              isPresentStatusOnly != false) {
-                                            isPresentStatusOnly = false;
+                                            selectedStatus =
+                                                null; // Reset status
                                             refreshPage = true;
                                           } else if (value == presentKey &&
                                               isPresentStatusOnly != true) {
+                                            // Handle case for "Hadir"
                                             isPresentStatusOnly = true;
+                                            selectedStatus =
+                                                null; // Reset status for present
+                                            refreshPage = true;
+                                          } else if (value == absentKey &&
+                                              isPresentStatusOnly != false) {
+                                            // Handle case for "Tidak Hadir"
+                                            isPresentStatusOnly = false;
+                                            selectedStatus =
+                                                null; // Absence combines sick, permission, and alpa
+                                            refreshPage = true;
+                                          } else if (value == sickKey &&
+                                              selectedStatus !=
+                                                  StudentAttendanceStatus
+                                                      .sick) {
+                                            // Handle case for "Sakit"
+                                            isPresentStatusOnly =
+                                                false; // Absence status includes sick
+                                            selectedStatus =
+                                                StudentAttendanceStatus.sick;
+                                            refreshPage = true;
+                                          } else if (value == permissionKey &&
+                                              selectedStatus !=
+                                                  StudentAttendanceStatus
+                                                      .permission) {
+                                            // Handle case for "Izin"
+                                            isPresentStatusOnly =
+                                                false; // Absence status includes permission
+                                            selectedStatus =
+                                                StudentAttendanceStatus
+                                                    .permission;
+                                            refreshPage = true;
+                                          } else if (value == alpaKey &&
+                                              selectedStatus !=
+                                                  StudentAttendanceStatus
+                                                      .alpa) {
+                                            // Handle case for "Alpa"
+                                            isPresentStatusOnly =
+                                                false; // Absence status includes alpa
+                                            selectedStatus =
+                                                StudentAttendanceStatus.alpa;
                                             refreshPage = true;
                                           }
                                           if (refreshPage) {
@@ -301,17 +411,32 @@ class _TeacherViewAttendanceScreenState
                                             getAttendance();
                                           }
                                         },
-                                        selectedValue:
-                                            isPresentStatusOnly == null
-                                                ? allKey
-                                                : isPresentStatusOnly!
-                                                    ? presentKey
-                                                    : absentKey,
+                                        selectedValue: isPresentStatusOnly ==
+                                                null
+                                            ? allKey
+                                            : isPresentStatusOnly!
+                                                ? presentKey
+                                                : selectedStatus ==
+                                                        StudentAttendanceStatus
+                                                            .sick
+                                                    ? sickKey
+                                                    : selectedStatus ==
+                                                            StudentAttendanceStatus
+                                                                .permission
+                                                        ? permissionKey
+                                                        : selectedStatus ==
+                                                                StudentAttendanceStatus
+                                                                    .alpa
+                                                            ? alpaKey
+                                                            : absentKey, // Default to "Tidak Hadir"
                                         titleKey: statusKey,
                                         values: const [
                                           allKey,
+                                          presentKey,
                                           absentKey,
-                                          presentKey
+                                          // sickKey,
+                                          // permissionKey,
+                                          // alpaKey,
                                         ],
                                       ),
                                       context: context);
@@ -320,7 +445,18 @@ class _TeacherViewAttendanceScreenState
                                     ? allKey
                                     : isPresentStatusOnly!
                                         ? presentKey
-                                        : absentKey,
+                                        : selectedStatus ==
+                                                StudentAttendanceStatus.sick
+                                            ? sickKey
+                                            : selectedStatus ==
+                                                    StudentAttendanceStatus
+                                                        .permission
+                                                ? permissionKey
+                                                : selectedStatus ==
+                                                        StudentAttendanceStatus
+                                                            .alpa
+                                                    ? alpaKey
+                                                    : absentKey,
                                 width: boxConstraints.maxWidth * (0.48)),
                           ],
                         ),

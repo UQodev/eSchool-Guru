@@ -7,14 +7,19 @@ class CustomColors extends ThemeExtension<CustomColors> {
   final Color? totalTeacherOverviewBackgroundColor;
   final Color? totalStudentOverviewBackgroundColor;
   final Color? totalStaffOverviewBackgroundColor;
+  final Color? sickBackgroundColor;
+  final Color? permissionBackgroundColor;
 
-  const CustomColors(
-      {required this.redColor,
-      required this.successColor,
-      required this.leaveRequestOverviewBackgroundColor,
-      required this.totalStaffOverviewBackgroundColor,
-      required this.totalStudentOverviewBackgroundColor,
-      required this.totalTeacherOverviewBackgroundColor});
+  const CustomColors({
+    required this.redColor,
+    required this.successColor,
+    required this.leaveRequestOverviewBackgroundColor,
+    required this.totalStaffOverviewBackgroundColor,
+    required this.totalStudentOverviewBackgroundColor,
+    required this.totalTeacherOverviewBackgroundColor,
+    required this.sickBackgroundColor,
+    required this.permissionBackgroundColor,
+  });
   @override
   ThemeExtension<CustomColors> copyWith(
       {Color? successColor,
@@ -24,19 +29,23 @@ class CustomColors extends ThemeExtension<CustomColors> {
       Color? totalStudentOverviewBackgroundColor,
       Color? totalStaffOverviewBackgroundColor}) {
     return CustomColors(
-        successColor: successColor ?? this.successColor,
-        redColor: redColor ?? this.redColor,
-        leaveRequestOverviewBackgroundColor:
-            leaveRequestOverviewBackgroundColor ??
-                this.leaveRequestOverviewBackgroundColor,
-        totalStaffOverviewBackgroundColor: totalStaffOverviewBackgroundColor ??
-            this.totalStaffOverviewBackgroundColor,
-        totalStudentOverviewBackgroundColor:
-            totalStudentOverviewBackgroundColor ??
-                this.totalStudentOverviewBackgroundColor,
-        totalTeacherOverviewBackgroundColor:
-            totalTeacherOverviewBackgroundColor ??
-                this.totalTeacherOverviewBackgroundColor);
+      successColor: successColor ?? this.successColor,
+      redColor: redColor ?? this.redColor,
+      leaveRequestOverviewBackgroundColor:
+          leaveRequestOverviewBackgroundColor ??
+              this.leaveRequestOverviewBackgroundColor,
+      totalStaffOverviewBackgroundColor: totalStaffOverviewBackgroundColor ??
+          this.totalStaffOverviewBackgroundColor,
+      totalStudentOverviewBackgroundColor:
+          totalStudentOverviewBackgroundColor ??
+              this.totalStudentOverviewBackgroundColor,
+      totalTeacherOverviewBackgroundColor:
+          totalTeacherOverviewBackgroundColor ??
+              this.totalTeacherOverviewBackgroundColor,
+      sickBackgroundColor: sickBackgroundColor ?? this.sickBackgroundColor,
+      permissionBackgroundColor:
+          permissionBackgroundColor ?? this.permissionBackgroundColor,
+    );
   }
 
   @override
@@ -63,6 +72,10 @@ class CustomColors extends ThemeExtension<CustomColors> {
             totalTeacherOverviewBackgroundColor,
             other.totalTeacherOverviewBackgroundColor,
             t),
+        sickBackgroundColor:
+            Color.lerp(sickBackgroundColor, other.sickBackgroundColor, t),
+        permissionBackgroundColor: Color.lerp(
+            permissionBackgroundColor, other.permissionBackgroundColor, t),
         successColor: Color.lerp(successColor, other.successColor, t));
   }
 }

@@ -36,17 +36,32 @@ class SubmitAttendanceCubit extends Cubit<SubmitAttendanceState> {
             .map(
               (attendanceReport) => {
                 "student_id": attendanceReport.studentId,
-                "type":
-                    attendanceReport.status == StudentAttendanceStatus.present
-                        ? 1
-                        : 0
+                "type": _mapAttendanceStatusToType(attendanceReport.status),
               },
             )
             .toList(),
       );
       emit(SubmitAttendanceSuccess());
     } catch (e) {
+      print("Error during attendance submission: $e");
       emit(SubmitAttendanceFailure(e.toString()));
+    }
+  }
+
+  int _mapAttendanceStatusToType(StudentAttendanceStatus status) {
+    switch (status) {
+      case StudentAttendanceStatus.present:
+        return 1;
+      case StudentAttendanceStatus.absent:
+        return 0;
+      case StudentAttendanceStatus.sick:
+        return 2;
+      case StudentAttendanceStatus.permission:
+        return 3;
+      case StudentAttendanceStatus.alpa:
+        return 4;
+      default:
+        return 0; // Default ke absent jika status tidak dikenali
     }
   }
 }
