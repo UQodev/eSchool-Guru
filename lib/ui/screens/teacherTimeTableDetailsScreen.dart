@@ -148,10 +148,10 @@ class _TeacherTimeTableDetailsScreenState
           alignment: Alignment.topCenter,
           child: Column(
             children: [
-              const CustomAppbar(titleKey: timetableKey),
+              const CustomAppbar(titleKey: teacherTimetableKey),
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: 90,
+                height: 120,
                 padding: EdgeInsets.all(appContentHorizontalPadding),
                 decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.surface,
@@ -169,8 +169,8 @@ class _TeacherTimeTableDetailsScreenState
                         children: [
                           CustomTextContainer(
                             textKey: widget.teacherDetails.fullName ?? "-",
-                            style: const TextStyle(fontSize: 22),
-                            maxLines: 1,
+                            style: const TextStyle(fontSize: 21),
+                            maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
                         ],
