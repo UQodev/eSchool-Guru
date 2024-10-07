@@ -26,7 +26,7 @@ class CustomTitleDescriptionContainer extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            fontSize: 13,
+            fontSize: 14,
             color: Theme.of(context).colorScheme.secondary.withOpacity(0.76),
           ),
         ),
@@ -41,7 +41,7 @@ class CustomTitleDescriptionContainer extends StatelessWidget {
                     trimLines: 3,
                     textStyle: const TextStyle(
                       fontSize: 15,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w400,
                     ),
                   )
                 : CustomTextContainer(
@@ -50,7 +50,7 @@ class CustomTitleDescriptionContainer extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       fontSize: 15,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w300,
                     ),
                   ),
       ],
