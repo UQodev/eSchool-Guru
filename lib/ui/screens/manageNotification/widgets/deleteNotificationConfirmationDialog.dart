@@ -1,4 +1,5 @@
 import 'package:eschool_saas_staff/cubits/announcement/deleteNotificationCubit.dart';
+import 'package:eschool_saas_staff/ui/styles/colors.dart';
 import 'package:eschool_saas_staff/ui/widgets/customCircularProgressIndicator.dart';
 import 'package:eschool_saas_staff/ui/widgets/customTextButton.dart';
 import 'package:eschool_saas_staff/ui/widgets/customTextContainer.dart';
@@ -44,20 +45,21 @@ class DeleteNotificationConfirmationDialog extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       CustomTextButton(
-                          buttonTextKey: yesKey,
+                          buttonTextKey: noKey,
                           onTapButton: () {
-                            context
-                                .read<DeleteNotificationCubit>()
-                                .deleteNotification(
-                                    notificationId: notificationId);
+                            Get.back();
                           }),
                       const SizedBox(
                         width: 25.0,
                       ),
                       CustomTextButton(
-                          buttonTextKey: noKey,
+                          buttonTextKey: sureKey,
+                          textStyle: TextStyle(color: primaryColor),
                           onTapButton: () {
-                            Get.back();
+                            context
+                                .read<DeleteNotificationCubit>()
+                                .deleteNotification(
+                                    notificationId: notificationId);
                           }),
                     ],
                   );
