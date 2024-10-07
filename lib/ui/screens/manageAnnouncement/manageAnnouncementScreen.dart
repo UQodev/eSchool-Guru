@@ -161,7 +161,7 @@ class _ManageAnnouncementScreenState extends State<ManageAnnouncementScreen> {
                             children: [
                               SizedBox(
                                 width: boxConstraints.maxWidth * (0.15),
-                                child: const CustomTextContainer(textKey: "#"),
+                                child: const CustomTextContainer(textKey: "No"),
                               ),
                               SizedBox(
                                 width: boxConstraints.maxWidth * (0.85),

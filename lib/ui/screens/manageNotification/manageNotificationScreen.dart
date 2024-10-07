@@ -154,8 +154,8 @@ class ManageNotificationScreenState extends State<ManageNotificationScreen> {
                                 children: [
                                   SizedBox(
                                     width: boxConstraints.maxWidth * (0.15),
-                                    child:
-                                        const CustomTextContainer(textKey: "#"),
+                                    child: const CustomTextContainer(
+                                        textKey: "No"),
                                   ),
                                   SizedBox(
                                     width: boxConstraints.maxWidth * (0.85),
