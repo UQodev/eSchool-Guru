@@ -9,6 +9,7 @@ import 'package:eschool_saas_staff/utils/labelKeys.dart';
 import 'package:eschool_saas_staff/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:intl/intl.dart';
 
 class StaffDetailsScreen extends StatefulWidget {
   final UserDetails staffDetails;
@@ -229,12 +230,16 @@ class _StaffDetailsScreenState extends State<StaffDetailsScreen> {
                         height: 30,
                       ),
                       _buildTeacherDetailsTitleAndValueContainer(
-                          titleKey: joiningDateKey,
-                          valyeKey:
-                              (widget.staffDetails.createdAt ?? "").isEmpty
-                                  ? "-"
-                                  : Utils.formatDate(DateTime.parse(
-                                      widget.staffDetails.createdAt!))),
+                        titleKey: joiningDateKey,
+                        valyeKey: (widget.staffDetails.createdAt ?? "").isEmpty
+                            ? "-"
+                            : Utils.formatDate(DateTime.parse(
+                                    widget.staffDetails.createdAt!))
+                                .split(' ') // memisahkan berdasarkan spasi
+                                .sublist(
+                                    1) // mengambil elemen mulai dari index ke-1 (tanggal, bulan, tahun)
+                                .join(' '),
+                      ),
                       _buildTeacherDetailsTitleAndValueContainer(
                           titleKey: emailKey,
                           valyeKey: widget.staffDetails.email ?? "-"),
@@ -242,19 +247,30 @@ class _StaffDetailsScreenState extends State<StaffDetailsScreen> {
                           titleKey: phoneKey,
                           valyeKey: widget.staffDetails.mobile ?? "-"),
                       _buildTeacherDetailsTitleAndValueContainer(
-                          titleKey: dateOfBirthKey,
-                          valyeKey: (widget.staffDetails.dob ?? "").isEmpty
-                              ? "-"
-                              : Utils.formatDate(
-                                  DateTime.parse(widget.staffDetails.dob!))),
+                        titleKey: dateOfBirthKey,
+                        valyeKey: (widget.staffDetails.dob ?? "").isEmpty
+                            ? "-"
+                            : Utils.formatDate(
+                                    DateTime.parse(widget.staffDetails.dob!))
+                                .split(' ') // memisahkan berdasarkan spasi
+                                .sublist(
+                                    1) // mengambil elemen mulai dari index ke-1 (tanggal, bulan, tahun)
+                                .join(
+                                    ' '), // menggabungkan kembali menjadi string
+                      ),
                       _buildTeacherDetailsTitleAndValueContainer(
                           titleKey: genderKey,
                           valyeKey: widget.staffDetails.getGender()),
                       _buildTeacherDetailsTitleAndValueContainer(
-                          titleKey: salaryKey,
-                          valyeKey: widget.staffDetails.staff?.salary
-                                  ?.toStringAsFixed(2) ??
-                              "-"),
+                        titleKey: salaryKey,
+                        valyeKey: widget.staffDetails.staff?.salary != null
+                            ? NumberFormat.currency(
+                                    locale: 'id',
+                                    symbol: 'Rp',
+                                    decimalDigits: 0)
+                                .format(widget.staffDetails.staff!.salary)
+                            : "-",
+                      ),
                     ],
                   ),
                 )
