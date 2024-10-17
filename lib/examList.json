@@ -1,0 +1,551 @@
+{
+    "error": false,
+    "message": "Data Fetched Successfully",
+    "data": [
+        {
+            "id": 60,
+            "name": "baru",
+            "description": null,
+            "publish": 0,
+            "session_year": "2024/2025",
+            "exam_starting_date": null,
+            "exam_ending_date": null,
+            "exam_status": "2",
+            "class_name": "XII RPL - IDN",
+            "timetable": []
+        },
+        {
+            "id": 59,
+            "name": "baru",
+            "description": null,
+            "publish": 0,
+            "session_year": "2024/2025",
+            "exam_starting_date": null,
+            "exam_ending_date": null,
+            "exam_status": "2",
+            "class_name": "XI RPL - IDN",
+            "timetable": []
+        },
+        {
+            "id": 36,
+            "name": "Ujian Tengah Semester",
+            "description": "Pelaksanaan ujian tengah semester",
+            "publish": 0,
+            "session_year": "2024/2025",
+            "exam_starting_date": "2024-08-26",
+            "exam_ending_date": "2024-09-02",
+            "exam_status": "2",
+            "class_name": "XII RPL - IDN",
+            "timetable": [
+                {
+                    "id": 5,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-08-26",
+                    "start_time": "07:00:00",
+                    "end_time": "09:00:00",
+                    "subject_name": "Produk Kreatif dan Kewirausahaan - Theory",
+                    "class_subject": {
+                        "id": 2,
+                        "class_id": 2,
+                        "subject_id": 2,
+                        "subject": {
+                            "id": 4,
+                            "name": "Produk Kreatif dan Kewirausahaan",
+                            "type": "Theory"
+                        }
+                    }
+                },
+                {
+                    "id": 6,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-08-26",
+                    "start_time": "09:30:00",
+                    "end_time": "11:30:00",
+                    "subject_name": "PPKN - Theory",
+                    "class_subject": {
+                        "id": 1,
+                        "class_id": 1,
+                        "subject_id": 1,
+                        "subject": {
+                            "id": 3,
+                            "name": "PPKN",
+                            "type": "Theory"
+                        }
+                    }
+                },
+                {
+                    "id": 7,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-08-26",
+                    "start_time": "12:00:00",
+                    "end_time": "14:00:00",
+                    "subject_name": "Matematika - Theory",
+                    "class_subject": {
+                        "id": 4,
+                        "class_id": 4,
+                        "subject_id": 4,
+                        "subject": {
+                            "id": 9,
+                            "name": "Matematika",
+                            "type": "Theory"
+                        }
+                    }
+                },
+                {
+                    "id": 8,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-08-26",
+                    "start_time": "14:00:00",
+                    "end_time": "16:00:00",
+                    "subject_name": "Pemrograman Web dan Perangkat Bergerak (Mobile). - Practical",
+                    "class_subject": {
+                        "id": 3,
+                        "class_id": 3,
+                        "subject_id": 3,
+                        "subject": {
+                            "id": 6,
+                            "name": "Pemrograman Web dan Perangkat Bergerak (Mobile).",
+                            "type": "Practical"
+                        }
+                    }
+                },
+                {
+                    "id": 9,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-08-27",
+                    "start_time": "07:00:00",
+                    "end_time": "09:00:00",
+                    "subject_name": "Bahasa Inggris - Theory",
+                    "class_subject": {
+                        "id": 7,
+                        "class_id": 7,
+                        "subject_id": 7,
+                        "subject": {
+                            "id": 11,
+                            "name": "Bahasa Inggris",
+                            "type": "Theory"
+                        }
+                    }
+                },
+                {
+                    "id": 11,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-08-27",
+                    "start_time": "09:30:00",
+                    "end_time": "11:30:00",
+                    "subject_name": "Pemrograman Berbasis Objek - Practical",
+                    "class_subject": {
+                        "id": 5,
+                        "class_id": 5,
+                        "subject_id": 5,
+                        "subject": {
+                            "id": 10,
+                            "name": "Pemrograman Berbasis Objek",
+                            "type": "Practical"
+                        }
+                    }
+                },
+                {
+                    "id": 12,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-08-28",
+                    "start_time": "07:00:00",
+                    "end_time": "09:00:00",
+                    "subject_name": "Matematika - Theory",
+                    "class_subject": {
+                        "id": 10,
+                        "class_id": 10,
+                        "subject_id": 10,
+                        "subject": {
+                            "id": 9,
+                            "name": "Matematika",
+                            "type": "Theory"
+                        }
+                    }
+                },
+                {
+                    "id": 14,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-08-29",
+                    "start_time": "07:00:00",
+                    "end_time": "09:00:00",
+                    "subject_name": "IPAS - Theory",
+                    "class_subject": {
+                        "id": 8,
+                        "class_id": 8,
+                        "subject_id": 8,
+                        "subject": {
+                            "id": 14,
+                            "name": "IPAS",
+                            "type": "Theory"
+                        }
+                    }
+                },
+                {
+                    "id": 15,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-08-29",
+                    "start_time": "09:30:00",
+                    "end_time": "11:30:00",
+                    "subject_name": null,
+                    "class_subject": {
+                        "id": null,
+                        "class_id": null,
+                        "subject_id": null,
+                        "subject": {
+                            "id": null,
+                            "name": null,
+                            "type": null
+                        }
+                    }
+                },
+                {
+                    "id": 16,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-08-30",
+                    "start_time": "07:00:00",
+                    "end_time": "09:00:00",
+                    "subject_name": "Bahasa Jerman - Theory",
+                    "class_subject": {
+                        "id": 11,
+                        "class_id": 11,
+                        "subject_id": 11,
+                        "subject": {
+                            "id": 8,
+                            "name": "Bahasa Jerman",
+                            "type": "Theory"
+                        }
+                    }
+                },
+                {
+                    "id": 33,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-09-02",
+                    "start_time": "07:00:00",
+                    "end_time": "09:00:00",
+                    "subject_name": "Bahasa Indonesia - Theory",
+                    "class_subject": {
+                        "id": 6,
+                        "class_id": 6,
+                        "subject_id": 6,
+                        "subject": {
+                            "id": 12,
+                            "name": "Bahasa Indonesia",
+                            "type": "Theory"
+                        }
+                    }
+                },
+                {
+                    "id": 34,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-09-02",
+                    "start_time": "09:00:00",
+                    "end_time": "11:00:00",
+                    "subject_name": "Sejarah Indonesia - Theory",
+                    "class_subject": {
+                        "id": 9,
+                        "class_id": 9,
+                        "subject_id": 9,
+                        "subject": {
+                            "id": 16,
+                            "name": "Sejarah Indonesia",
+                            "type": "Theory"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "id": 35,
+            "name": "Ujian Tengah Semester",
+            "description": "Pelaksanaan ujian tengah semester",
+            "publish": 0,
+            "session_year": "2024/2025",
+            "exam_starting_date": "2024-09-16",
+            "exam_ending_date": "2024-09-20",
+            "exam_status": "2",
+            "class_name": "XI RPL - IDN",
+            "timetable": [
+                {
+                    "id": 18,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-09-16",
+                    "start_time": "07:00:00",
+                    "end_time": "09:00:00",
+                    "subject_name": null,
+                    "class_subject": {
+                        "id": null,
+                        "class_id": null,
+                        "subject_id": null,
+                        "subject": {
+                            "id": null,
+                            "name": null,
+                            "type": null
+                        }
+                    }
+                },
+                {
+                    "id": 19,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-09-16",
+                    "start_time": "09:30:00",
+                    "end_time": "11:30:00",
+                    "subject_name": null,
+                    "class_subject": {
+                        "id": null,
+                        "class_id": null,
+                        "subject_id": null,
+                        "subject": {
+                            "id": null,
+                            "name": null,
+                            "type": null
+                        }
+                    }
+                },
+                {
+                    "id": 20,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-09-16",
+                    "start_time": "12:00:00",
+                    "end_time": "14:00:00",
+                    "subject_name": null,
+                    "class_subject": {
+                        "id": null,
+                        "class_id": null,
+                        "subject_id": null,
+                        "subject": {
+                            "id": null,
+                            "name": null,
+                            "type": null
+                        }
+                    }
+                },
+                {
+                    "id": 21,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-09-16",
+                    "start_time": "14:00:00",
+                    "end_time": "16:00:00",
+                    "subject_name": null,
+                    "class_subject": {
+                        "id": null,
+                        "class_id": null,
+                        "subject_id": null,
+                        "subject": {
+                            "id": null,
+                            "name": null,
+                            "type": null
+                        }
+                    }
+                },
+                {
+                    "id": 22,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-09-17",
+                    "start_time": "07:00:00",
+                    "end_time": "09:00:00",
+                    "subject_name": null,
+                    "class_subject": {
+                        "id": null,
+                        "class_id": null,
+                        "subject_id": null,
+                        "subject": {
+                            "id": null,
+                            "name": null,
+                            "type": null
+                        }
+                    }
+                },
+                {
+                    "id": 23,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-09-17",
+                    "start_time": "09:30:00",
+                    "end_time": "11:30:00",
+                    "subject_name": null,
+                    "class_subject": {
+                        "id": null,
+                        "class_id": null,
+                        "subject_id": null,
+                        "subject": {
+                            "id": null,
+                            "name": null,
+                            "type": null
+                        }
+                    }
+                },
+                {
+                    "id": 24,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-09-17",
+                    "start_time": "12:00:00",
+                    "end_time": "14:00:00",
+                    "subject_name": null,
+                    "class_subject": {
+                        "id": null,
+                        "class_id": null,
+                        "subject_id": null,
+                        "subject": {
+                            "id": null,
+                            "name": null,
+                            "type": null
+                        }
+                    }
+                },
+                {
+                    "id": 25,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-09-18",
+                    "start_time": "07:00:00",
+                    "end_time": "09:00:00",
+                    "subject_name": null,
+                    "class_subject": {
+                        "id": null,
+                        "class_id": null,
+                        "subject_id": null,
+                        "subject": {
+                            "id": null,
+                            "name": null,
+                            "type": null
+                        }
+                    }
+                },
+                {
+                    "id": 26,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-09-18",
+                    "start_time": "09:30:00",
+                    "end_time": "11:30:00",
+                    "subject_name": null,
+                    "class_subject": {
+                        "id": null,
+                        "class_id": null,
+                        "subject_id": null,
+                        "subject": {
+                            "id": null,
+                            "name": null,
+                            "type": null
+                        }
+                    }
+                },
+                {
+                    "id": 27,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-09-18",
+                    "start_time": "12:00:00",
+                    "end_time": "14:00:00",
+                    "subject_name": null,
+                    "class_subject": {
+                        "id": null,
+                        "class_id": null,
+                        "subject_id": null,
+                        "subject": {
+                            "id": null,
+                            "name": null,
+                            "type": null
+                        }
+                    }
+                },
+                {
+                    "id": 28,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-09-19",
+                    "start_time": "07:00:00",
+                    "end_time": "09:00:00",
+                    "subject_name": null,
+                    "class_subject": {
+                        "id": null,
+                        "class_id": null,
+                        "subject_id": null,
+                        "subject": {
+                            "id": null,
+                            "name": null,
+                            "type": null
+                        }
+                    }
+                },
+                {
+                    "id": 29,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-09-19",
+                    "start_time": "09:30:00",
+                    "end_time": "11:30:00",
+                    "subject_name": null,
+                    "class_subject": {
+                        "id": null,
+                        "class_id": null,
+                        "subject_id": null,
+                        "subject": {
+                            "id": null,
+                            "name": null,
+                            "type": null
+                        }
+                    }
+                },
+                {
+                    "id": 30,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-09-19",
+                    "start_time": "12:00:00",
+                    "end_time": "14:00:00",
+                    "subject_name": null,
+                    "class_subject": {
+                        "id": null,
+                        "class_id": null,
+                        "subject_id": null,
+                        "subject": {
+                            "id": null,
+                            "name": null,
+                            "type": null
+                        }
+                    }
+                },
+                {
+                    "id": 31,
+                    "total_marks": 100,
+                    "passing_marks": 75,
+                    "date": "2024-09-20",
+                    "start_time": "07:00:00",
+                    "end_time": "09:00:00",
+                    "subject_name": null,
+                    "class_subject": {
+                        "id": null,
+                        "class_id": null,
+                        "subject_id": null,
+                        "subject": {
+                            "id": null,
+                            "name": null,
+                            "type": null
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "code": 200
+}
